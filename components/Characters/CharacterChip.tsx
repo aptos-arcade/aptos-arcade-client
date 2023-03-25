@@ -1,40 +1,46 @@
 import React from 'react';
 
-import Link from "next/link";
-
 import {Avatar, Box} from "@chakra-ui/react";
 
 import {Character} from "@/types/Character";
 import {Token} from "@/types/Token";
+import {useRouter} from "next/router";
 
 interface Props {
     character: Character,
     ownedNFTs: Token[]
 }
 
-const CharacterChip: React.FC<Props> = ({ character }) => {
+interface Props {
+    unload: () => Promise<void>;
+}
+
+const CharacterChip: React.FC<Props> = ({ character, unload }) => {
+
+    const router = useRouter();
+    const handleNavigate = async () => {
+        await unload();
+        router.push(`/character/${character.collectionIdHash}`)
+    }
 
     return (
-        <Link
-            href={`/character/${character.collectionIdHash}`}
+        <Box
+            rounded='lg'
+            p={2}
+            cursor='pointer'
+            _hover={{
+                bg: 'whiteAlpha.100'
+            }}
+            transition='all 0.2s ease-in-out'
+            bg={'whiteAlpha.50'}
+            onClick={handleNavigate}
         >
-            <Box
-                rounded='lg'
-                p={2}
-                cursor='pointer'
-                _hover={{
-                    bg: 'whiteAlpha.100'
-                }}
-                transition='all 0.2s ease-in-out'
-                bg={'whiteAlpha.50'}
-            >
-                <Avatar
-                    size='xl'
-                    src={character.collectionImage}
+            <Avatar
+                size='xl'
+                src={character.collectionImage}
 
-                />
-            </Box>
-        </Link>
+            />
+        </Box>
     );
 };
 

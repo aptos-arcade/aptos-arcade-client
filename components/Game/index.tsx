@@ -5,22 +5,23 @@ import {Card, CircularProgress, HStack, useDisclosure, VStack} from '@chakra-ui/
 import { AiOutlineFullscreen } from 'react-icons/ai';
 import { GiRetroController } from 'react-icons/gi';
 
-import { useUnityContext, Unity } from 'react-unity-webgl';
+import { Unity } from 'react-unity-webgl';
 
 import ControlsModal from "../ControlsModal";
 import Button from "@/components/Utilities/Button";
 
-const Game: React.FC = () => {
+import {UnityProvider} from "react-unity-webgl/distribution/types/unity-provider";
 
-    const { unityProvider, isLoaded, requestFullscreen } = useUnityContext({
-        loaderUrl: "/build/AptosArena.loader.js",
-        dataUrl: "/build/AptosArena.data",
-        frameworkUrl: "/build/AptosArena.framework.js",
-        codeUrl: "/build/AptosArena.wasm"
-    });
+interface Props {
+    unityProvider: UnityProvider,
+    isLoaded: boolean,
+    requestFullscreen: (fullscreen: boolean) => void,
+}
+
+const Game: React.FC<Props> = ({ unityProvider, isLoaded, requestFullscreen }) => {
 
     const { isOpen, onClose, onOpen } = useDisclosure();
-    
+
     return (
         <>
             <ControlsModal isOpen={isOpen} onClose={onClose} />

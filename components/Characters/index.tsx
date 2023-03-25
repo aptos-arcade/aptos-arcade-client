@@ -8,8 +8,11 @@ import characters from "../../data/characters";
 
 import useOwnedNFTs from "@/hooks/useOwnedNFTs";
 
+interface Props {
+    unload: () => Promise<void>;
+}
 
-const Fighters = () => {
+const Fighters: React.FC<Props> = ({ unload }) => {
 
     const { ownedNFTs } = useOwnedNFTs();
 
@@ -37,6 +40,7 @@ const Fighters = () => {
                             key={character.collectionName}
                             character={character}
                             ownedNFTs={ownedNFTs.filter(nft => nft.collectionIdHash === character.collectionIdHash)}
+                            unload={unload}
                         />
                     ))
                 }
