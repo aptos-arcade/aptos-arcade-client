@@ -17,6 +17,7 @@ import {
 
 import type { AppProps } from 'next/app'
 import Head from "next/head";
+import {AptosProvider} from "@/contexts/AptosContext";
 
 export default function App({ Component, pageProps }: AppProps) {
 
@@ -42,15 +43,17 @@ export default function App({ Component, pageProps }: AppProps) {
           wallets={wallets}
           autoConnect={true}
       >
-          <ChakraProvider theme={theme}>
-              <Head>
-                  <title>Aptos Arena</title>
-                  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                  <meta name="description" content="2D arcade-style platform fighter for Aptos NFTs" />
-                  <link rel="icon" href="/favicon.ico" />
-              </Head>
-              <Component {...pageProps} />
-          </ChakraProvider>
+          <AptosProvider>
+              <ChakraProvider theme={theme}>
+                  <Head>
+                      <title>Aptos Arena</title>
+                      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                      <meta name="description" content="2D arcade-style platform fighter for Aptos NFTs" />
+                      <link rel="icon" href="/favicon.ico" />
+                  </Head>
+                  <Component {...pageProps} />
+              </ChakraProvider>
+          </AptosProvider>
     </WalletProvider>
   )
 }

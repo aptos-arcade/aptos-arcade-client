@@ -1,5 +1,6 @@
-export interface Fighter {
+export interface Character {
     collectionName: string;
+    collectionDescription: string;
     collectionImage: string;
     collectionBackgroundImage: string;
     stats: Stats;

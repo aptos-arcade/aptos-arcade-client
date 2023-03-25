@@ -2,10 +2,11 @@ import React from 'react';
 
 import {
     Flex,
-    HStack,
+    HStack, Image,
 } from '@chakra-ui/react'
 
 import ConnectWallet from './ConnectWallet';
+import Link from "next/link";
 
 export const navbarHeight = 20;
   
@@ -25,8 +26,21 @@ const Navbar : React.FC = () => {
         >
             <HStack 
                 flex={1}
-                justifyContent='flex-end'
+                justifyContent='space-between'
             >
+                <Link
+                    href='/'
+                >
+                    <Image
+                        src='/logo.png'
+                        alt='logo'
+                        h={navbarHeight}
+                        transition='all 0.2s ease-in-out'
+                        _hover={{
+                            opacity: 0.9,
+                        }}
+                    />
+                </Link>
                 <ConnectWallet />
                 {/* <ColorModeToggle /> */}
             </HStack>

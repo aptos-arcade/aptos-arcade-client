@@ -1,12 +1,14 @@
 import React from 'react'
 
-import {Button, Card, CircularProgress, HStack, useDisclosure, VStack} from '@chakra-ui/react';
+import {Card, CircularProgress, HStack, useDisclosure, VStack} from '@chakra-ui/react';
 
 import { AiOutlineFullscreen } from 'react-icons/ai';
 import { GiRetroController } from 'react-icons/gi';
 
 import { useUnityContext, Unity } from 'react-unity-webgl';
+
 import ControlsModal from "../ControlsModal";
+import Button from "@/components/Utilities/Button";
 
 const Game: React.FC = () => {
 
@@ -30,19 +32,16 @@ const Game: React.FC = () => {
                     justifyContent='center'
                 >
                     <Button
+                        buttonType='primary'
                         onClick={onOpen}
                         leftIcon={<GiRetroController />}
-                        color='#1A202C'
-                        bg='blue.200'
                     >
                         Controls
                     </Button>
                     <Button
-                        aria-label='Fullscreen'
+                        buttonType='primary'
                         leftIcon={<AiOutlineFullscreen />}
                         onClick={() => requestFullscreen(true)}
-                        color='#1A202C'
-                        bg='blue.200'
                     >
                         Fullscreen
                     </Button>

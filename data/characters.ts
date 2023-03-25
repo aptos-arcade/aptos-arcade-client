@@ -1,8 +1,9 @@
-import { Fighter } from '@/types/Fighter'
+import { Character } from '@/types/Character'
 
-const fighters: Fighter[] = [
+const characters: Character[] = [
     {
-        collectionName: 'Pontem Pirates',
+        collectionName: 'Pontem Pirate',
+        collectionDescription: 'The Pontem Pirates are a group of space enforcers that are known for their power and strength.',
         collectionImage: '/PontemPirate.png',
         collectionBackgroundImage: '/PontemPirateBackdrop.jpg',
         stats: {
@@ -14,7 +15,8 @@ const fighters: Fighter[] = [
         collectionIdHash: "aece05d29c0b543be608d73c44d8bb46a09e18e06097f7fdec078689e52ed118"
     },
     {
-        collectionName: "Aptos Monkeys",
+        collectionName: "Aptos Monkey",
+        collectionDescription: "The Aptos Monkeys are a lethal unit of bandits that are known for their speed and agility.",
         collectionImage: "/AptosMonkey.png",
         collectionBackgroundImage: "/AptosMonkeyBackdrop.jpg",
         stats: {
@@ -27,4 +29,8 @@ const fighters: Fighter[] = [
     }
 ]
 
-export default fighters
+export const getCharacterByCollectionIdHash = (collectionIdHash: string) => {
+    return characters.find(character => character.collectionIdHash === collectionIdHash)
+}
+
+export default characters

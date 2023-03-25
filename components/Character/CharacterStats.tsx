@@ -1,50 +1,51 @@
 import React from 'react';
 
-import {HStack, VStack, Text, Progress} from "@chakra-ui/react";
+import {VStack, Text, Progress} from "@chakra-ui/react";
 
-import {statMetrics, Stats} from "@/types/Fighter";
+import {statMetrics, Stats} from "@/types/Character";
 
 interface Props {
     stats: Stats
 }
 
-const FighterStats: React.FC<Props> = ({ stats }) => {
+const CharacterStats: React.FC<Props> = ({ stats }) => {
     return (
         <VStack
             w='100%'
-            align='flex-start'
+            spacing={4}
         >
             <Text
                 color='blue.200'
-                fontSize='xl'
+                fontSize='2xl'
             >
                 Stats
             </Text>
             <VStack
                 w='100%'
+                spacing={8}
             >
                 {
                     statMetrics.map((stat) => (
-                        <HStack
+                        <VStack
                             key={stat}
                             w='100%'
                         >
                             <Text
-                                fontSize='xs'
                                 color='white'
                                 flex={1}
+                                textAlign={'right'}
                             >
                                 {stat.charAt(0).toUpperCase() + stat.slice(1)}
                             </Text>
                             <Progress
                                 value={stats[stat] * 10}
-                                flex={1}
                                 rounded='full'
-                                bg='whiteAlpha.50'
+                                bg='whiteAlpha.300'
                                 fill='blue.200'
                                 colorScheme='brand'
+                                w={{ base: '100%', md: '50%' }}
                             />
-                        </HStack>
+                        </VStack>
                     ))
                 }
             </VStack>
@@ -52,4 +53,4 @@ const FighterStats: React.FC<Props> = ({ stats }) => {
     );
 };
 
-export default FighterStats;
+export default CharacterStats;

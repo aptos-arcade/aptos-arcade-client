@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import fighters from "@/data/fighters";
+import characters from "@/data/characters";
 
 import {Token} from "@/types/Token";
 
@@ -23,7 +23,7 @@ export default async function handler(
 ) {
     const { address } = req.query;
     const tokens: Token[] = await fetch(
-        getQueryString(address as string, fighters.map(fighter => fighter.collectionIdHash)),
+        getQueryString(address as string, characters.map(fighter => fighter.collectionIdHash)),
     {
             method: 'GET',
             headers: {
