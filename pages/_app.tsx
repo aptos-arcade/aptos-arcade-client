@@ -1,6 +1,49 @@
-import '@/styles/globals.css'
+import {useEffect, useState} from "react";
+
+import { ChakraProvider } from "@chakra-ui/react";
+
+import "@fontsource/press-start-2p";
+
+import theme from "@/theme";
+
+import {
+    WalletProvider,
+    AptosWalletAdapter,
+    MartianWalletAdapter,
+    PontemWalletAdapter,
+    RiseWalletAdapter,
+    WalletAdapter
+} from "@manahippo/aptos-wallet-adapter";
+
 import type { AppProps } from 'next/app'
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+
+    const [wallets, setWallets] = useState<WalletAdapter[]>([]);
+    const [loaded, setLoaded] = useState<boolean>(false);
+
+    useEffect(() => {
+        setWallets([
+            new PontemWalletAdapter(),
+            new RiseWalletAdapter(),
+            new AptosWalletAdapter(),
+            new MartianWalletAdapter(),
+        ])
+        setLoaded(true);
+    }, [])
+
+    if (!loaded) {
+        return null;
+    }
+
+  return (
+      <WalletProvider
+          wallets={wallets}
+          autoConnect={true}
+      >
+          <ChakraProvider theme={theme}>
+              <Component {...pageProps} />
+          </ChakraProvider>
+    </WalletProvider>
+  )
 }
