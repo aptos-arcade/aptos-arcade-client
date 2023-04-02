@@ -1,24 +1,26 @@
 import React, {useCallback, useEffect} from 'react';
 
 import dynamic from "next/dynamic";
+import {useRouter} from "next/router";
 
 import Layout from '@/components/Layout';
 import Header from '@/components/Header';
 import Fighters from '@/components/Characters';
-import {useRouter} from "next/router";
-import {useUnityContext} from "react-unity-webgl";
+
+import useGame from "@/hooks/useGame";
+
 const Game = dynamic(() => import('@/components/Game'), {
     ssr: false,
 })
 
 export default function HomePage() {
 
-    const {unityProvider, isLoaded, requestFullscreen, unload} = useUnityContext({
-        loaderUrl: "/build/AptosArena.loader.js",
-        dataUrl: "/build/AptosArena.data",
-        frameworkUrl: "/build/AptosArena.framework.js",
-        codeUrl: "/build/AptosArena.wasm"
-    });
+    const {
+        unityProvider,
+        isLoaded,
+        requestFullscreen,
+        unload,
+    } = useGame();
 
     const router = useRouter();
 

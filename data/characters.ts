@@ -12,7 +12,8 @@ const characters: Character[] = [
             defense: 5,
         },
         marketplaceURL: "https://www.topaz.so/collection/Pontem-Space-Pirates-c46dd298b8",
-        collectionIdHash: "aece05d29c0b543be608d73c44d8bb46a09e18e06097f7fdec078689e52ed118"
+        collectionIdHash: "aece05d29c0b543be608d73c44d8bb46a09e18e06097f7fdec078689e52ed118",
+        enumValue: 0
     },
     {
         collectionName: "Aptos Monkey",
@@ -25,12 +26,18 @@ const characters: Character[] = [
             defense: 3,
         },
         marketplaceURL: "https://www.topaz.so/collection/Aptos-Monkeys-f932dcb983",
-        collectionIdHash: "7ac8cecb76edbbd5da40d719bbb9795fc5744e4098ee0ce1be4bb86c90f42301"
+        collectionIdHash: "7ac8cecb76edbbd5da40d719bbb9795fc5744e4098ee0ce1be4bb86c90f42301",
+        enumValue: 1
     }
 ]
 
 export const getCharacterByCollectionIdHash = (collectionIdHash: string) => {
     return characters.find(character => character.collectionIdHash === collectionIdHash)
+}
+
+export const getCharacterEnumValueByCollectionIdHash = (collectionIdHash: string) => {
+    const character = getCharacterByCollectionIdHash(collectionIdHash)
+    return character ? character.enumValue : -1
 }
 
 export default characters

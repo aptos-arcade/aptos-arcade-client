@@ -6,6 +6,7 @@ export interface Character {
     stats: Stats;
     marketplaceURL: string,
     collectionIdHash: string,
+    enumValue: number,
 }
 
 export const statMetrics = ['speed', 'strength', 'defense'] as const;
