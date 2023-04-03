@@ -10,12 +10,17 @@ const useOwnedNFTs = (collectionIdHash = "") => {
     const [loading, setLoading] = useState<boolean>(true);
     const [ownedNFTs, setOwnedNFTs] = useState<Token[]>([]);
 
-    const fetchOwnedNFTs = useCallback(async (address: string) => {
+    const getOwnedNFTs = async (address: string): Promise<Token[]> => {
         const response = await fetch(`/api/nfts/${address}`)
-        const json = await response.json()
-        setOwnedNFTs(json.tokens
+        const json = await response.json();
+        return json.tokens
             .filter((token: Token) => collectionIdHash === "" || token.collectionIdHash === collectionIdHash)
-        )
+    }
+
+    const fetchOwnedNFTs = useCallback(async (address: string) => {
+        setLoading(true);
+        const ownedNFTs = await getOwnedNFTs(address);
+        setOwnedNFTs(ownedNFTs);
         setLoading(false);
     }, [collectionIdHash])
 
@@ -26,6 +31,7 @@ const useOwnedNFTs = (collectionIdHash = "") => {
     }, [account, fetchOwnedNFTs])
 
     return {
+        getOwnedNFTs,
         ownedNFTs,
         loading
     };

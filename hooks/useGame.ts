@@ -29,20 +29,27 @@ const useGame = () => {
         codeUrl: "/build/AptosArena.wasm"
     });
 
+    const updateRankedCharacters = useCallback(async () => {
+        if(account?.address?.toString() !== undefined) {
+            sendMessage("RankedCharacterSelectManager", "RemoveCharacters");
+            const characterEnums = ownedNFTs
+                .map((nft) => getCharacterEnumValueByCollectionIdHash(nft.collectionIdHash))
+                .filter((characterEnum) => characterEnum > -1)
+            // @ts-ignore
+            const uniqueCharacterEnums = [...new Set(characterEnums)];
+            uniqueCharacterEnums.forEach((characterEnum) => {
+                sendMessage("RankedCharacterSelectManager", "AddCharacter", characterEnum);
+            });
+        }
+    }, [account?.address, ownedNFTs, sendMessage]);
+
     const handleWalletScreenLoad = useCallback(() => {
         setWalletManagerActive(true);
     }, []);
 
     const handleRankedCharacterSelectScreenLoad = useCallback(() => {
-        const characterEnums = ownedNFTs
-            .map((nft) => getCharacterEnumValueByCollectionIdHash(nft.collectionIdHash))
-            .filter((characterEnum) => characterEnum > -1)
-        // @ts-ignore
-        const uniqueCharacterEnums = [...new Set(characterEnums)];
-        uniqueCharacterEnums.forEach((characterEnum) => {
-            sendMessage("RankedCharacterSelectManager", "AddCharacter", characterEnum);
-        })
-    }, [ownedNFTs, sendMessage]);
+        updateRankedCharacters();
+    }, [updateRankedCharacters]);
 
     useEffect(() => {
         addEventListener("WalletScreenLoad", handleWalletScreenLoad);
@@ -58,7 +65,11 @@ const useGame = () => {
         if(walletManagerActive && account?.address?.toString() !== undefined) {
             sendMessage("WalletManager", "SetAccountAddress", account.address.toString());
         }
-    }, [account?.address, sendMessage, walletManagerActive]);
+    }, [account?.address, sendMessage, updateRankedCharacters, walletManagerActive]);
+
+    useEffect(() => {
+        updateRankedCharacters();
+    }, [ownedNFTs, updateRankedCharacters]);
 
     return {
         unityProvider,
