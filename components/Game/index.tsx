@@ -1,16 +1,12 @@
 import React from 'react'
 
-import {Card, CircularProgress, HStack, useDisclosure, VStack} from '@chakra-ui/react';
-
-import { AiOutlineFullscreen } from 'react-icons/ai';
-import { GiRetroController } from 'react-icons/gi';
+import {Card, CircularProgress, useDisclosure, VStack} from '@chakra-ui/react';
 
 import { Unity } from 'react-unity-webgl';
-
-import ControlsModal from "../ControlsModal";
-import Button from "@/components/Utilities/Button";
-
 import {UnityProvider} from "react-unity-webgl/distribution/types/unity-provider";
+
+import Controls from "@/components/Game/Controls";
+import ControlsModal from "@/components/ControlsModal";
 
 interface Props {
     unityProvider: UnityProvider,
@@ -28,25 +24,10 @@ const Game: React.FC<Props> = ({ unityProvider, isLoaded, requestFullscreen }) =
             <VStack
                 spacing={8}
             >
-                <HStack
-                    w='100%'
-                    justifyContent='center'
-                >
-                    <Button
-                        buttonType='primary'
-                        onClick={onOpen}
-                        leftIcon={<GiRetroController />}
-                    >
-                        Controls
-                    </Button>
-                    <Button
-                        buttonType='primary'
-                        leftIcon={<AiOutlineFullscreen />}
-                        onClick={() => requestFullscreen(true)}
-                    >
-                        Fullscreen
-                    </Button>
-                </HStack>
+                <Controls
+                    requestFullscreen={requestFullscreen}
+                    onOpen={onOpen}
+                />
                 <Card
                     shadow='lg'
                     position='relative'
@@ -75,6 +56,8 @@ const Game: React.FC<Props> = ({ unityProvider, isLoaded, requestFullscreen }) =
                         style={{
                             width: '100%',
                             aspectRatio: '16/9'
+                            // width: 0,
+                            // height: 0,
                         }}
                     />
                 </Card>

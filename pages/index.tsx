@@ -51,13 +51,13 @@ export default function HomePage() {
   return (
       <Layout>
           <Header />
-          <Fighters
-                unload={unload}
-          />
           <Game
               unityProvider={unityProvider}
               isLoaded={isLoaded}
               requestFullscreen={requestFullscreen}
+          />
+          <Fighters
+              unload={unload}
           />
       </Layout>
   )
