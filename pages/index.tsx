@@ -5,7 +5,6 @@ import {useRouter} from "next/router";
 
 import Layout from '@/components/Layout';
 import Header from '@/components/Header';
-import Fighters from '@/components/Characters';
 
 import useGame from "@/hooks/useGame";
 
@@ -51,9 +50,9 @@ export default function HomePage() {
   return (
       <Layout>
           <Header />
-          <Fighters
-              unload={unload}
-          />
+          {/*<Fighters*/}
+          {/*    unload={unload}*/}
+          {/*/>*/}
           <Game
               unityProvider={unityProvider}
               isLoaded={isLoaded}

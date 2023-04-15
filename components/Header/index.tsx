@@ -12,13 +12,13 @@ const Header: React.FC = () => {
             fontWeight="bold"
             color='blue.200'
         >
-            Aptos Arena
+            Arcade Shooter Demo
         </Heading>
         <Text
           color='white'
           textAlign='center'
         >
-          Play as your favorite Aptos NFTs to knock your opponents off the stage!
+            Jason Hedman 3D final project
         </Text>
     </VStack>
   )

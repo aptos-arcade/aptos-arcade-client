@@ -23,10 +23,10 @@ const useGame = () => {
         removeEventListener,
         sendMessage
     } = useUnityContext({
-        loaderUrl: "/build/AptosArena.loader.js",
-        dataUrl: "/build/AptosArena.data",
-        frameworkUrl: "/build/AptosArena.framework.js",
-        codeUrl: "/build/AptosArena.wasm"
+        loaderUrl: "/build/Web.loader.js",
+        dataUrl: "/build/Web.data",
+        frameworkUrl: "/build/Web.framework.js",
+        codeUrl: "/build/Web.wasm"
     });
 
     const updateRankedCharacters = useCallback(async () => {
