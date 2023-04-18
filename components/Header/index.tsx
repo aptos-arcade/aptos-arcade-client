@@ -2,7 +2,12 @@ import React from 'react'
 
 import { Heading, VStack, Text } from '@chakra-ui/react'
 
-const Header: React.FC = () => {
+interface Props {
+    headerText: string,
+    subHeaderText: string,
+}
+
+const Header: React.FC<Props> = ({ headerText, subHeaderText }) => {
   return (
     <VStack
       spacing={4}
@@ -12,13 +17,13 @@ const Header: React.FC = () => {
             fontWeight="bold"
             color='blue.200'
         >
-            Arcade Shooter Demo
+            {headerText}
         </Heading>
         <Text
           color='white'
           textAlign='center'
         >
-            Jason Hedman 3D final project
+            {subHeaderText}
         </Text>
     </VStack>
   )

@@ -15,33 +15,33 @@ const useGame = () => {
     const { ownedNFTs } = useOwnedNFTs();
 
     const {
-        unityProvider,
-        isLoaded,
-        requestFullscreen,
-        unload,
-        addEventListener,
-        removeEventListener,
-        sendMessage
+        unityProvider: arenaUnityProvider,
+        isLoaded: arenaIsLoaded,
+        requestFullscreen: arenaRequestFullscreen,
+        unload: arenaUnload,
+        addEventListener: arenaAddEventListener,
+        removeEventListener: arenaRemoveEventListener,
+        sendMessage: arenaSendMessage
     } = useUnityContext({
-        loaderUrl: "/build/Web.loader.js",
-        dataUrl: "/build/Web.data",
-        frameworkUrl: "/build/Web.framework.js",
-        codeUrl: "/build/Web.wasm"
+        loaderUrl: "/build/arena/Web.loader.js",
+        dataUrl: "/build/arena/Web.data",
+        frameworkUrl: "/build/arena/Web.framework.js",
+        codeUrl: "/build/arena/Web.wasm"
     });
 
     const updateRankedCharacters = useCallback(async () => {
         if(account?.address?.toString() !== undefined) {
-            sendMessage("RankedCharacterSelectManager", "RemoveCharacters");
+            arenaSendMessage("RankedCharacterSelectManager", "RemoveCharacters");
             const characterEnums = ownedNFTs
                 .map((nft) => getCharacterEnumValueByCollectionIdHash(nft.collectionIdHash))
                 .filter((characterEnum) => characterEnum > -1)
             // @ts-ignore
             const uniqueCharacterEnums = [...new Set(characterEnums)];
             uniqueCharacterEnums.forEach((characterEnum) => {
-                sendMessage("RankedCharacterSelectManager", "AddCharacter", characterEnum);
+                arenaSendMessage("RankedCharacterSelectManager", "AddCharacter", characterEnum);
             });
         }
-    }, [account?.address, ownedNFTs, sendMessage]);
+    }, [account?.address, ownedNFTs, arenaSendMessage]);
 
     const handleWalletScreenLoad = useCallback(() => {
         setWalletManagerActive(true);
@@ -63,19 +63,19 @@ const useGame = () => {
 
     useEffect(() => {
         if(walletManagerActive && account?.address?.toString() !== undefined) {
-            sendMessage("WalletManager", "SetAccountAddress", account.address.toString());
+            arenaSendMessage("WalletManager", "SetAccountAddress", account.address.toString());
         }
-    }, [account?.address, sendMessage, updateRankedCharacters, walletManagerActive]);
+    }, [account?.address, arenaSendMessage, updateRankedCharacters, walletManagerActive]);
 
     useEffect(() => {
         updateRankedCharacters();
     }, [ownedNFTs, updateRankedCharacters]);
 
     return {
-        unityProvider,
-        isLoaded,
-        requestFullscreen,
-        unload,
+        arenaUnityProvider,
+        arenaIsLoaded,
+        arenaRequestFullscreen,
+        arenaUnload,
     }
 }
 
