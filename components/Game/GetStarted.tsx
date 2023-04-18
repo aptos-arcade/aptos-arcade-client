@@ -5,14 +5,14 @@ import {Text, VStack} from "@chakra-ui/react";
 import {GiRetroController} from "react-icons/gi";
 import {AiOutlineFullscreen} from "react-icons/ai";
 
-import ControlStep from "@/components/Game/ControlStep";
+import GetStartedStep from "@/components/Game/GetStartedStep";
 
 interface Props {
     requestFullscreen: (fullscreen: boolean) => void,
     onOpen: () => void,
 }
 
-const Controls: React.FC<Props> = ({ requestFullscreen, onOpen }) => {
+const GetStarted: React.FC<Props> = ({ requestFullscreen, onOpen }) => {
 
     const controls = [
         {
@@ -41,7 +41,7 @@ const Controls: React.FC<Props> = ({ requestFullscreen, onOpen }) => {
             </Text>
             {
                 controls.map((control, index) => (
-                    <ControlStep
+                    <GetStartedStep
                         key={index}
                         index={index}
                         onClick={control.onClick}
@@ -55,4 +55,4 @@ const Controls: React.FC<Props> = ({ requestFullscreen, onOpen }) => {
     );
 };
 
-export default Controls;
+export default GetStarted;

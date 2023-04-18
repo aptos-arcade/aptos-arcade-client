@@ -2,8 +2,9 @@ import React from 'react'
 
 import { HStack, Flex } from '@chakra-ui/react'
 
-import { Controls } from './controls'
 import Key from './Key'
+
+import {Controls} from "@/types/Controls";
 
 interface Props {
     control: Controls

@@ -3,6 +3,8 @@ import React from 'react';
 import useAptosArena from "@/hooks/useAptosArena";
 
 import GamePageLayout from "@/components/Layout/GamePage";
+import arenaControls from "@/data/controls/arenaControls";
+import Fighters from "@/components/Characters";
 
 export default function HomePage() {
 
@@ -21,6 +23,8 @@ export default function HomePage() {
             requestFullscreen={arenaRequestFullscreen}
             headerText={"Aptos Arena"}
             subHeaderText={"2D platform fighter game"}
+            controls={arenaControls}
+            preGameComponent={<Fighters unload={arenaUnload} />}
         />
     )
 }

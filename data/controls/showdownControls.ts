@@ -1,13 +1,6 @@
-export interface Controls {
-    keys: Key[]
-}
+import {Controls} from "@/types/Controls";
 
-export interface Key {
-    name: string
-    key: string
-}
-
-export const controls: Controls[] = [
+const showdownControls: Controls[] = [
     {
         keys: [
             {
@@ -17,19 +10,25 @@ export const controls: Controls[] = [
             {
                 name: 'Sprint',
                 key: 'L. Shift'
-            }
+            },
+            {
+                name: 'Jump',
+                key: 'Space'
+            },
         ]
     },
     {
         keys: [
             {
-                name: 'Jump',
-                key: 'Space'
-            },
-            {
                 name: 'Shoot',
                 key: 'Click'
+            },
+            {
+                name: 'ADS',
+                key: 'R. Shift'
             }
         ]
     },
 ]
+
+export default showdownControls;

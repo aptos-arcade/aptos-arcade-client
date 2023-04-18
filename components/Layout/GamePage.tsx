@@ -1,10 +1,14 @@
 import React, {useCallback, useEffect} from 'react';
 
-import Layout from "@/components/Layout/index";
 import {useRouter} from "next/router";
-import {UnityProvider} from "react-unity-webgl/distribution/types/unity-provider";
+
+import Layout from "@/components/Layout/index";
 import Header from "@/components/Header";
 import Game from "@/components/Game";
+
+import {UnityProvider} from "react-unity-webgl/distribution/types/unity-provider";
+
+import { Controls } from "@/types/Controls";
 
 interface Props {
     unload: () => Promise<void>;
@@ -13,11 +17,12 @@ interface Props {
     requestFullscreen: (fullscreen: boolean) => void;
     headerText: string,
     subHeaderText: string,
+    controls: Controls[]
     preGameComponent?: React.ReactNode,
     postGameComponent?: React.ReactNode,
 }
 
-const GamePageLayout: React.FC<Props> = ({ unload, isLoaded, unityProvider, requestFullscreen, headerText, subHeaderText, preGameComponent, postGameComponent}) => {
+const GamePageLayout: React.FC<Props> = ({ unload, isLoaded, unityProvider, requestFullscreen, headerText, subHeaderText, controls, preGameComponent, postGameComponent}) => {
 
     const router = useRouter();
 
@@ -56,6 +61,7 @@ const GamePageLayout: React.FC<Props> = ({ unload, isLoaded, unityProvider, requ
                 unityProvider={unityProvider}
                 isLoaded={isLoaded}
                 requestFullscreen={requestFullscreen}
+                controls={controls}
             />
             {postGameComponent}
         </Layout>

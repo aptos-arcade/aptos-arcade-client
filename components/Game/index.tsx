@@ -5,26 +5,33 @@ import {Card, CircularProgress, useDisclosure, VStack} from '@chakra-ui/react';
 import { Unity } from 'react-unity-webgl';
 import {UnityProvider} from "react-unity-webgl/distribution/types/unity-provider";
 
-import Controls from "@/components/Game/Controls";
+import GetStarted from "@/components/Game/GetStarted";
 import ControlsModal from "@/components/ControlsModal";
+
+import {Controls} from "@/types/Controls";
 
 interface Props {
     unityProvider: UnityProvider,
     isLoaded: boolean,
     requestFullscreen: (fullscreen: boolean) => void,
+    controls: Controls[]
 }
 
-const Game: React.FC<Props> = ({ unityProvider, isLoaded, requestFullscreen }) => {
+const Game: React.FC<Props> = ({ unityProvider, isLoaded, requestFullscreen, controls }) => {
 
     const { isOpen, onClose, onOpen } = useDisclosure();
 
     return (
         <>
-            <ControlsModal isOpen={isOpen} onClose={onClose} />
+            <ControlsModal
+                isOpen={isOpen}
+                onClose={onClose}
+                controls={controls}
+            />
             <VStack
                 spacing={8}
             >
-                <Controls
+                <GetStarted
                     requestFullscreen={requestFullscreen}
                     onOpen={onOpen}
                 />

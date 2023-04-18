@@ -11,7 +11,7 @@ interface Props {
     index: number
 }
 
-const ControlStep: React.FC<Props> = ({ label, onClick, icon, index }) => {
+const GetStartedStep: React.FC<Props> = ({ label, onClick, icon, index }) => {
 
     const [clicked, setClicked] = useState(false);
 
@@ -41,4 +41,4 @@ const ControlStep: React.FC<Props> = ({ label, onClick, icon, index }) => {
     );
 };
 
-export default ControlStep;
+export default GetStartedStep;

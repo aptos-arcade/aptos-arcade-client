@@ -2,7 +2,7 @@ import React from 'react'
 
 import {Kbd, VStack, Text} from '@chakra-ui/react'
 
-import { Key as KeyType } from './controls'
+import {Key as KeyType} from '@/types/Controls'
 
 interface Props {
     keyData: KeyType

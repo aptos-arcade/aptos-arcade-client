@@ -11,13 +11,15 @@ import {
 } from '@chakra-ui/react'
 
 import Control from './Control'
-import { controls } from './controls'
+
+import { Controls } from '@/types/Controls'
 
 interface Props {
     isOpen: boolean
-    onClose: () => void
+    onClose: () => void,
+    controls: Controls[]
 }
-const Controls: React.FC<Props> = ({ isOpen, onClose }) => {
+const Controls: React.FC<Props> = ({ isOpen, onClose, controls }) => {
   return (
       <Modal
           isOpen={isOpen}
