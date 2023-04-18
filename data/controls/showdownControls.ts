@@ -29,6 +29,22 @@ const showdownControls: Controls[] = [
             }
         ]
     },
+    {
+        keys: [
+            {
+                name: "Pistol",
+                key: "1"
+            },
+            {
+                name: "Automatic",
+                key: "2"
+            },
+            {
+                name: "Sniper",
+                key: "3"
+            }
+        ]
+    }
 ]
 
 export default showdownControls;
