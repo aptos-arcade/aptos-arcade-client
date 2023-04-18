@@ -21,15 +21,18 @@ const GameCard: React.FC<Props> = ({ game }) => {
                 <Icon
                     as={game.icon}
                     boxSize={12}
+                    color='white'
                 />
                 <Text
                     fontSize={'2xl'}
                     fontWeight={'bold'}
+                    color='white'
                 >
                     {game.title}
                 </Text>
                 <Text
                     fontSize='sm'
+                    color='white'
                 >
                     {game.description}
                 </Text>

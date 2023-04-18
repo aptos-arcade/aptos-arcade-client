@@ -46,9 +46,9 @@ export default function App({ Component, pageProps }: AppProps) {
           <AptosProvider>
               <ChakraProvider theme={theme}>
                   <Head>
-                      <title>Shooter Demo</title>
+                      <title>Aptos Arcade</title>
                       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                      <meta name="description" content="Online multiplayer FPS game" />
+                      <meta name="description" content="Arcade-style multiplayer games on Aptos" />
                       <link rel="icon" href="/favicon.ico" />
                   </Head>
                   <Component {...pageProps} />
