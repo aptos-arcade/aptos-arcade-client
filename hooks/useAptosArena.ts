@@ -52,14 +52,14 @@ const useGame = () => {
     }, [updateRankedCharacters]);
 
     useEffect(() => {
-        addEventListener("WalletScreenLoad", handleWalletScreenLoad);
-        addEventListener("RankedCharacterSelectScreenLoad", handleRankedCharacterSelectScreenLoad);
+        arenaAddEventListener("WalletScreenLoad", handleWalletScreenLoad);
+        arenaAddEventListener("RankedCharacterSelectScreenLoad", handleRankedCharacterSelectScreenLoad);
 
         return () => {
-            removeEventListener("WalletScreenLoad", handleWalletScreenLoad);
-            removeEventListener("RankedCharacterSelectScreenLoad", handleRankedCharacterSelectScreenLoad);
+            arenaRemoveEventListener("WalletScreenLoad", handleWalletScreenLoad);
+            arenaRemoveEventListener("RankedCharacterSelectScreenLoad", handleRankedCharacterSelectScreenLoad);
         };
-    }, [addEventListener, handleRankedCharacterSelectScreenLoad, handleWalletScreenLoad, removeEventListener]);
+    }, [arenaAddEventListener, arenaRemoveEventListener, handleRankedCharacterSelectScreenLoad, handleWalletScreenLoad]);
 
     useEffect(() => {
         if(walletManagerActive && account?.address?.toString() !== undefined) {
