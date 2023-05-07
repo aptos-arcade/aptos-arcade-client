@@ -24,7 +24,7 @@ const showdownControls: Controls[] = [
                 key: 'Click'
             },
             {
-                name: 'ADS',
+                name: 'Zoom',
                 key: 'R. Shift'
             }
         ]
@@ -42,6 +42,18 @@ const showdownControls: Controls[] = [
             {
                 name: "Sniper",
                 key: "3"
+            }
+        ]
+    },
+    {
+        keys: [
+            {
+                name: "Menu",
+                key: "Esc"
+            },
+            {
+                name: "Leaderboard",
+                key: "Tab"
             }
         ]
     }
