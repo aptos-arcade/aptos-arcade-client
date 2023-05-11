@@ -2,19 +2,23 @@ import {Game} from "@/types/Game";
 
 import {GiBattleGear, GiBolterGun} from "react-icons/gi";
 
+export const APTOS_ARENA: Game = {
+    title: "Aptos Arena",
+    description: "Unleash Epic Combos and Collect Exclusive Aptos NFTs in the Ultimate 2D Platform Fighter!",
+    href: "/arena",
+    icon: GiBattleGear
+}
+
+export const APTOS_SHOWDOWN = {
+    title: "Aptos Showdown",
+    description: "Test your Aim in the Ultimate 3D Free-for-All First-Person Shooter Where Only the Best Survive!",
+    href: "/showdown",
+    icon: GiBolterGun
+}
+
 const games: Game[] = [
-    {
-        title: "Aptos Arena",
-        description: "2D platform fighter game",
-        href: "/arena",
-        icon: GiBattleGear
-    },
-    {
-        title: "Aptos Showdown",
-        description: "3D first person shooter game",
-        href: "/showdown",
-        icon: GiBolterGun
-    }
+    APTOS_ARENA,
+    APTOS_SHOWDOWN
 ]
 
 export default games;

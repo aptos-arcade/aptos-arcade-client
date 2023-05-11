@@ -1,54 +1,28 @@
-import React, {useCallback, useEffect} from 'react';
+import React from 'react';
 
-import {useRouter} from "next/router";
 
 import Layout from "@/components/Layout/index";
 import Header from "@/components/Header";
 import Game from "@/components/Game";
 
-import {UnityProvider} from "react-unity-webgl/distribution/types/unity-provider";
-
 import { Controls } from "@/types/Controls";
+import {GameHook} from "@/types/GameHook";
 
 interface Props {
-    unload: () => Promise<void>;
-    isLoaded: boolean;
-    unityProvider: UnityProvider;
-    requestFullscreen: (fullscreen: boolean) => void;
+    gameHook: GameHook
     headerText: string,
     subHeaderText: string,
     controls: Controls[]
-    preGameComponent?: React.ReactNode,
-    postGameComponent?: React.ReactNode,
+    children?: React.ReactNode,
 }
 
-const GamePageLayout: React.FC<Props> = ({ unload, isLoaded, unityProvider, requestFullscreen, headerText, subHeaderText, controls, preGameComponent, postGameComponent}) => {
+const GamePageLayout: React.FC<Props> = ({ gameHook, headerText, subHeaderText, controls, children  }) => {
 
-    const router = useRouter();
-
-    const handleUnload = useCallback(async () => {
-        await unload();
-        router.back();
-    }, [router, unload]);
-
-    useEffect(() => {
-        router.beforePopState(({ as }) => {
-            if (as !== router.asPath) {
-                if (isLoaded) {
-                    handleUnload();
-                    return false;
-                } else {
-                    return true;
-                }
-            } else {
-                return true;
-            }
-        });
-
-        return () => {
-            router.beforePopState(() => true);
-        };
-    }, [handleUnload, router, isLoaded]);
+    const {
+        unityProvider,
+        isLoaded,
+        requestFullscreen,
+    } = gameHook();
 
     return (
         <Layout>
@@ -56,14 +30,13 @@ const GamePageLayout: React.FC<Props> = ({ unload, isLoaded, unityProvider, requ
                 headerText={headerText}
                 subHeaderText={subHeaderText}
             />
-            {preGameComponent}
             <Game
                 unityProvider={unityProvider}
                 isLoaded={isLoaded}
                 requestFullscreen={requestFullscreen}
                 controls={controls}
             />
-            {postGameComponent}
+            {children}
         </Layout>
     );
 };

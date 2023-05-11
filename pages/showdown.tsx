@@ -4,25 +4,18 @@ import GamePageLayout from "@/components/Layout/GamePage";
 
 import useAptosShowdown from "@/hooks/useAptosShowdown";
 import showdownControls from "@/data/controls/showdownControls";
+import {APTOS_SHOWDOWN} from "@/data/games";
 
 
 export default function HomePage() {
 
-    const {
-        showdownUnityProvider,
-        showdownIsLoaded,
-        showdownRequestFullscreen,
-        showdownUnload,
-    } = useAptosShowdown();
+    const { title, description } = APTOS_SHOWDOWN;
 
     return (
         <GamePageLayout
-            unload={showdownUnload}
-            isLoaded={showdownIsLoaded}
-            unityProvider={showdownUnityProvider}
-            requestFullscreen={showdownRequestFullscreen}
-            headerText={"Aptos Showdown"}
-            subHeaderText={"3D First Person Shooter"}
+            gameHook={useAptosShowdown}
+            headerText={title}
+            subHeaderText={description}
             controls={showdownControls}
         />
     )

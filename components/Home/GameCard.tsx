@@ -33,6 +33,7 @@ const GameCard: React.FC<Props> = ({ game }) => {
                 <Text
                     fontSize='sm'
                     color='white'
+                    textAlign='center'
                 >
                     {game.description}
                 </Text>

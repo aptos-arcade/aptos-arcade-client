@@ -7,10 +7,12 @@ import {
 
 import ConnectWallet from './ConnectWallet';
 import Link from "next/link";
+import NavLinks from "@/components/Navbar/NavLinks";
+import MobileNav from "@/components/Navbar/MobileNav";
 
 export const navbarHeight = 20;
   
-const Navbar : React.FC = () => {    
+const Navbar : React.FC = ({ }) => {
     return (
         <Flex
             position='absolute'
@@ -23,10 +25,10 @@ const Navbar : React.FC = () => {
             gap={8}
             alignItems='center'
             p={4}
+            justifyContent='space-between'
         >
             <HStack 
                 flex={1}
-                justifyContent='space-between'
             >
                 <Link
                     href='/'
@@ -41,9 +43,13 @@ const Navbar : React.FC = () => {
                         }}
                     />
                 </Link>
-                <ConnectWallet />
-                {/* <ColorModeToggle /> */}
+                <NavLinks />
             </HStack>
+            <HStack>
+                <ConnectWallet />
+                <MobileNav />
+            </HStack>
+
         </Flex>
     );
 };

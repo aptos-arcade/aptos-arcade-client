@@ -13,7 +13,7 @@ const Header: React.FC<Props> = ({ headerText, subHeaderText }) => {
       spacing={4}
     >
         <Heading
-            fontSize="4xl"
+            fontSize="48px"
             fontWeight="bold"
             color='blue.200'
         >

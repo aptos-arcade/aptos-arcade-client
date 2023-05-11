@@ -10,7 +10,7 @@ const Home = () => {
         <Layout>
             <Header
                 headerText={"Aptos Arcade"}
-                subHeaderText={"Arcade style games on the Aptos blockchain"}
+                subHeaderText={"NFT-powered web3 gaming super-app"}
             />
             <SimpleGrid
                 columns={2}

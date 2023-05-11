@@ -2,11 +2,14 @@ import {useCallback, useEffect, useState} from "react";
 
 import {useWallet} from "@manahippo/aptos-wallet-adapter";
 
-import {useUnityContext} from "react-unity-webgl";
+import useGame from "@/hooks/game/useGameData";
 import useOwnedNFTs from "@/hooks/useOwnedNFTs";
+
 import {getCharacterEnumValueByCollectionIdHash} from "@/data/characters";
 
-const useGame = () => {
+import {GameHook} from "@/types/GameHook";
+
+const useAptosArena: GameHook = () => {
 
     const [walletManagerActive, setWalletManagerActive] = useState<boolean>(false);
 
@@ -15,33 +18,28 @@ const useGame = () => {
     const { ownedNFTs } = useOwnedNFTs();
 
     const {
-        unityProvider: arenaUnityProvider,
-        isLoaded: arenaIsLoaded,
-        requestFullscreen: arenaRequestFullscreen,
-        unload: arenaUnload,
-        addEventListener: arenaAddEventListener,
-        removeEventListener: arenaRemoveEventListener,
-        sendMessage: arenaSendMessage
-    } = useUnityContext({
-        loaderUrl: "/build/arena/Web.loader.js",
-        dataUrl: "/build/arena/Web.data",
-        frameworkUrl: "/build/arena/Web.framework.js",
-        codeUrl: "/build/arena/Web.wasm"
-    });
+        unityProvider,
+        isLoaded,
+        requestFullscreen,
+        navigate,
+        addEventListener,
+        removeEventListener,
+        sendMessage
+    } = useGame("arena");
 
     const updateRankedCharacters = useCallback(async () => {
         if(account?.address?.toString() !== undefined) {
-            arenaSendMessage("RankedCharacterSelectManager", "RemoveCharacters");
+            sendMessage("RankedCharacterSelectManager", "RemoveCharacters");
             const characterEnums = ownedNFTs
                 .map((nft) => getCharacterEnumValueByCollectionIdHash(nft.collectionIdHash))
                 .filter((characterEnum) => characterEnum > -1)
             // @ts-ignore
             const uniqueCharacterEnums = [...new Set(characterEnums)];
             uniqueCharacterEnums.forEach((characterEnum) => {
-                arenaSendMessage("RankedCharacterSelectManager", "AddCharacter", characterEnum);
+                sendMessage("RankedCharacterSelectManager", "AddCharacter", characterEnum);
             });
         }
-    }, [account?.address, ownedNFTs, arenaSendMessage]);
+    }, [account?.address, sendMessage, ownedNFTs]);
 
     const handleWalletScreenLoad = useCallback(() => {
         setWalletManagerActive(true);
@@ -52,31 +50,31 @@ const useGame = () => {
     }, [updateRankedCharacters]);
 
     useEffect(() => {
-        arenaAddEventListener("WalletScreenLoad", handleWalletScreenLoad);
-        arenaAddEventListener("RankedCharacterSelectScreenLoad", handleRankedCharacterSelectScreenLoad);
+        addEventListener("WalletScreenLoad", handleWalletScreenLoad);
+        addEventListener("RankedCharacterSelectScreenLoad", handleRankedCharacterSelectScreenLoad);
 
         return () => {
-            arenaRemoveEventListener("WalletScreenLoad", handleWalletScreenLoad);
-            arenaRemoveEventListener("RankedCharacterSelectScreenLoad", handleRankedCharacterSelectScreenLoad);
+            removeEventListener("WalletScreenLoad", handleWalletScreenLoad);
+            removeEventListener("RankedCharacterSelectScreenLoad", handleRankedCharacterSelectScreenLoad);
         };
-    }, [arenaAddEventListener, arenaRemoveEventListener, handleRankedCharacterSelectScreenLoad, handleWalletScreenLoad]);
+    }, [addEventListener, handleRankedCharacterSelectScreenLoad, handleWalletScreenLoad, removeEventListener]);
 
     useEffect(() => {
         if(walletManagerActive && account?.address?.toString() !== undefined) {
-            arenaSendMessage("WalletManager", "SetAccountAddress", account.address.toString());
+            sendMessage("WalletManager", "SetAccountAddress", account.address.toString());
         }
-    }, [account?.address, arenaSendMessage, updateRankedCharacters, walletManagerActive]);
+    }, [account?.address, sendMessage, updateRankedCharacters, walletManagerActive]);
 
     useEffect(() => {
         updateRankedCharacters();
     }, [ownedNFTs, updateRankedCharacters]);
 
     return {
-        arenaUnityProvider,
-        arenaIsLoaded,
-        arenaRequestFullscreen,
-        arenaUnload,
+        unityProvider,
+        isLoaded,
+        requestFullscreen,
+        navigate
     }
 }
 
-export default useGame
+export default useAptosArena

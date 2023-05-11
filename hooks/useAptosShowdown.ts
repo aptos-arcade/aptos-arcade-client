@@ -1,24 +1,20 @@
-import {useUnityContext} from "react-unity-webgl";
+import useGame from "@/hooks/game/useGameData";
+import {GameHook} from "@/types/GameHook";
 
-const useAptosShowdown = () => {
+const useAptosShowdown: GameHook = () => {
 
     const {
-        unityProvider: showdownUnityProvider,
-        isLoaded: showdownIsLoaded,
-        requestFullscreen: showdownRequestFullscreen,
-        unload: showdownUnload,
-    } = useUnityContext({
-        loaderUrl: "/build/showdown/Web.loader.js",
-        dataUrl: "/build/showdown/Web.data",
-        frameworkUrl: "/build/showdown/Web.framework.js",
-        codeUrl: "/build/showdown/Web.wasm"
-    });
+        unityProvider,
+        isLoaded,
+        requestFullscreen,
+        navigate
+    } = useGame("showdown");
 
     return {
-        showdownUnityProvider,
-        showdownIsLoaded,
-        showdownRequestFullscreen,
-        showdownUnload
+        unityProvider,
+        isLoaded,
+        requestFullscreen,
+        navigate
     }
 }
 

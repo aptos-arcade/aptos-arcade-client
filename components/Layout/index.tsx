@@ -4,7 +4,7 @@ import { Box, Container } from '@chakra-ui/react'
 import Navbar, { navbarHeight } from '../Navbar';
 
 interface Props {
-    children: React.ReactNode
+    children: React.ReactNode,
 }
 
 const Layout: React.FC<Props> = ({ children }) => {
@@ -15,7 +15,9 @@ const Layout: React.FC<Props> = ({ children }) => {
             minWidth='100vw'
             bg='#1A202C'
         >
-            <Navbar />
+            <Navbar
+
+            />
             <Container
                 maxW='4xl'
                 display='flex'
