@@ -19,7 +19,7 @@ const Layout: React.FC<Props> = ({ children }) => {
 
             />
             <Container
-                maxW='4xl'
+                maxW='5xl'
                 display='flex'
                 flexDirection='column'
                 pt={navbarHeight}
