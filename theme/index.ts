@@ -17,6 +17,9 @@ const theme = extendTheme({
             800: "#90CDF4",
             900: "#90CDF4",
         }
+    },
+    config: {
+        initialColorMode: "dark",
     }
 });
 
