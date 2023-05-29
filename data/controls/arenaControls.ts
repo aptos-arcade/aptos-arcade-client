@@ -5,7 +5,7 @@ const arenaControls: Controls[] = [
         keys: [
             {
                 name: 'Jump',
-                key: '↑'
+                key: 'W'
             }
         ]
     },
@@ -13,15 +13,15 @@ const arenaControls: Controls[] = [
         keys: [
             {
                 name: 'Left',
-                key: '←'
+                key: 'A'
             },
             {
                 name: 'Drop',
-                key: '↓'
+                key: 'S'
             },
             {
                 name: 'Right',
-                key: '→'
+                key: 'D'
             }
         ]
     },
@@ -33,7 +33,7 @@ const arenaControls: Controls[] = [
             },
             {
                 name: 'Melee',
-                key: 'L. Shift'
+                key: 'Click'
             },
         ]
     }
