@@ -18,7 +18,7 @@ export default function HomePage() {
             subHeaderText={description}
             controls={arenaControls}
         >
-            <Fighters unload={async () => {}} />
+            {/*<Fighters unload={async () => {}} />*/}
         </GamePageLayout>
     )
 }
