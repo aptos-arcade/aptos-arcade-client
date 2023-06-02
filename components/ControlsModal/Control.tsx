@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { HStack, Flex } from '@chakra-ui/react'
+import { HStack, Flex, Text } from '@chakra-ui/react'
 
 import Key from './Key'
 
@@ -15,8 +15,15 @@ const Control: React.FC<Props> = ({ control }) => {
     return (
         <Flex
             flex={1}
-            justifyContent='center'
+            flexDirection='column'
+            alignItems='center'
+            gap={4}
         >
+            {control.title && (
+                <Text>
+                    {control.title}
+                </Text>
+            )}
             <HStack>
                 {
                     control.keys.map((key) => (

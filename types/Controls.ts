@@ -1,4 +1,5 @@
 export interface Controls {
+    title?: string
     keys: Key[]
 }
 
