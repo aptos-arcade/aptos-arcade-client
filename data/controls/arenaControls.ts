@@ -4,60 +4,62 @@ const arenaControls: Controls[] = [
     {
         title: 'Movement',
         keys: [
-            {
-                name: 'Jump',
-                key: 'W'
-            }
-        ]
-    },
-    {
-        keys: [
-            {
-                name: 'Left',
-                key: 'A'
-            },
-            {
-                name: 'Drop',
-                key: 'S'
-            },
-            {
-                name: 'Right',
-                key: 'D'
-            }
+            [
+                {
+                    name: 'Jump',
+                    key: '↑'
+                }
+            ],
+            [
+                {
+                    name: 'Left',
+                    key: '←'
+                },
+                {
+                    name: 'Drop',
+                    key: '↓'
+                },
+                {
+                    name: 'Right',
+                    key: '→'
+                }
+            ]
         ]
     },
     {
         title: 'Melee',
         keys: [
-            {
-                name: 'Up Attack',
-                key: 'W'
-            },
+            [
+                {
+                    name: 'Up',
+                    key: 'W'
+                }
+            ],
+            [
+                {
+                    name: 'Left',
+                    key: 'A'
+                },
+                {
+                    name: 'Down',
+                    key: 'S'
+                },
+                {
+                    name: 'Right',
+                    key: 'D'
+                }
+            ]
         ],
-    },
-    {
-        keys: [
-            {
-                name: 'Left Attack',
-                key: 'A'
-            },
-            {
-                name: 'Down Attack',
-                key: 'S'
-            },
-            {
-                name: 'Right Attack',
-                key: 'D'
-            }
-        ]
     },
     {
         title: 'Ranged',
         keys: [
-            {
-                name: 'Shoot',
-                key: 'Space'
-            }
+            [
+                {
+                    name: 'Shoot',
+                    key: 'Space'
+                }
+            ]
         ]
     }
 ]

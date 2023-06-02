@@ -1,6 +1,6 @@
 export interface Controls {
-    title?: string
-    keys: Key[]
+    title: string
+    keys: Key[][]
 }
 
 export interface Key {

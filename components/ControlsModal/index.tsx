@@ -1,13 +1,13 @@
 import React from 'react'
 
 import {
+    Flex,
     Heading,
     Modal,
     ModalBody,
     ModalContent, ModalFooter,
     ModalHeader,
     ModalOverlay,
-    SimpleGrid,
 } from '@chakra-ui/react'
 
 import Control from './Control'
@@ -24,7 +24,7 @@ const Controls: React.FC<Props> = ({ isOpen, onClose, controls }) => {
       <Modal
           isOpen={isOpen}
           onClose={onClose}
-          size='md'
+          size='2xl'
           isCentered
       >
           <ModalOverlay />
@@ -33,7 +33,7 @@ const Controls: React.FC<Props> = ({ isOpen, onClose, controls }) => {
           >
               <ModalHeader>
                   <Heading
-                      fontSize="lg"
+                      fontSize="2xl"
                       fontWeight="bold"
                       color='blue.200'
                       textAlign='center'
@@ -42,10 +42,11 @@ const Controls: React.FC<Props> = ({ isOpen, onClose, controls }) => {
                   </Heading>
               </ModalHeader>
               <ModalBody>
-                  <SimpleGrid
-                      columns={1}
-                      spacing={4}
+                  <Flex
+                      flexDirection={{ base: 'column', md: 'row' }}
                       w='100%'
+                      gap={4}
+                      flexWrap='wrap'
                   >
                       {
                           controls.map((control, index) => (
@@ -55,7 +56,7 @@ const Controls: React.FC<Props> = ({ isOpen, onClose, controls }) => {
                               />
                           ))
                       }
-                  </SimpleGrid>
+                  </Flex>
               </ModalBody>
               <ModalFooter />
           </ModalContent>
