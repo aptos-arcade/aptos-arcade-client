@@ -1,15 +1,21 @@
-import {useAptos} from "@/contexts/AptosContext";
-import {useWallet} from "@manahippo/aptos-wallet-adapter";
-import useAptosTransaction from "@/hooks/useAptosTransaction";
 import {useCallback, useEffect, useState} from "react";
-import {MeleeWeapon} from "@/types/MeleeWeapon";
+
+import {useWallet} from "@manahippo/aptos-wallet-adapter";
+
+import useAptosTransaction from "@/hooks/useAptosTransaction";
+
+import {useAptos} from "@/contexts/AptosContext";
+
 import {
     getHasPlayerMintedMeleeWeapon,
     getMeleeWeaponCollectionAddress,
     getMeleeWeaponData
 } from "@/services/viewFunctionBuilder";
 import {equipMeleeWeaponPayload, mintMeleeWeaponPayload} from "@/services/transactionBuilder";
+
 import {meleeWeaponNames} from "@/data/meleeWeapons";
+
+import {MeleeWeapon} from "@/types/MeleeWeapon";
 
 const useMeleeWeapons = () => {
 
@@ -48,14 +54,12 @@ const useMeleeWeapons = () => {
             const meleeWeapons = await Promise.all(tokens.current_token_ownerships_v2.map((token) => {
                 return getMeleeWeaponData(provider.aptosClient, token.storage_id)
             }))
-            setMeleeWeapons(meleeWeapons.map(([type, power], index) => {
-                return {
-                    address: tokens.current_token_ownerships_v2[index].storage_id,
-                    weaponType: type,
-                    power: power,
-                    name: meleeWeaponNames[type - 1]
-                }
-            }));
+            setMeleeWeapons(meleeWeapons.map(([power, type], index) => ({
+                address: tokens.current_token_ownerships_v2[index].storage_id,
+                weaponType: type,
+                power: power,
+                name: meleeWeaponNames[type - 1]
+            })));
             setMeleeWeaponsLoading(false);
         }
     }, [account?.address, provider.aptosClient, provider.indexerClient])

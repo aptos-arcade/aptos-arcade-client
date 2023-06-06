@@ -11,7 +11,7 @@ const PlayerCreation: React.FC<Props> = ({ createPlayer }) => {
         <Button
             onClick={createPlayer}
         >
-            Create Player
+            Create Brawler
         </Button>
     );
 };

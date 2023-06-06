@@ -45,10 +45,10 @@ const usePlayer = () => {
             const playerCharacter = await getPlayerCharacterData(provider.aptosClient, account?.address?.toString());
             if(playerCharacter.length > 0) {
                 setPlayerCharacter({
-                    creatorAddress: playerCharacter[0],
-                    collectionName: playerCharacter[1],
-                    tokenName: playerCharacter[2],
-                    propertyVersion: 0
+                    creator_address: playerCharacter[0],
+                    collection_name: playerCharacter[1],
+                    name: playerCharacter[2],
+                    property_version: 0
                 })
             }
         }
@@ -83,6 +83,7 @@ const usePlayer = () => {
     }
 
     return {
+        walletConnected: Boolean(account?.address?.toString()),
         createPlayer,
         loading,
         playerTokenAddress,

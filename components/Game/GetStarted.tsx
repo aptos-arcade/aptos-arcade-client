@@ -33,11 +33,8 @@ const GetStarted: React.FC<Props> = ({ requestFullscreen, onOpen }) => {
             justifyContent='center'
             spacing={4}
         >
-            <Text
-                fontSize='xl'
-                color='blue.200'
-            >
-                Get Started
+            <Text>
+                Get started by viewing the controls and entering fullscreen.
             </Text>
             {
                 controls.map((control, index) => (

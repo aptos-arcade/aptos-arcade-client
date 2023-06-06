@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {Card, CircularProgress, useDisclosure, VStack} from '@chakra-ui/react';
+import {Card, CircularProgress, Heading, useDisclosure, VStack} from '@chakra-ui/react';
 
 import { Unity } from 'react-unity-webgl';
 import {UnityProvider} from "react-unity-webgl/distribution/types/unity-provider";
@@ -31,6 +31,11 @@ const Game: React.FC<Props> = ({ unityProvider, isLoaded, requestFullscreen, con
             <VStack
                 spacing={8}
             >
+                <Heading
+                    color={'blue.200'}
+                >
+                    Gameplay
+                </Heading>
                 <GetStarted
                     requestFullscreen={requestFullscreen}
                     onOpen={onOpen}

@@ -19,7 +19,7 @@ interface Props {
     isCentered?: boolean
 }
 
-const Modal: React.FC<Props> = ({ isOpen, onClose, modalFooter, modalHeader, modalBody, size, isCentered}) => {
+const Modal: React.FC<Props> = ({ isOpen, onClose, modalFooter, modalHeader, modalBody, size, isCentered = true}) => {
     return (
         <ChakraModal
             isOpen={isOpen}

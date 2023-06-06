@@ -7,6 +7,7 @@ import Game from "@/components/Game";
 
 import { Controls } from "@/types/Controls";
 import {GameHook} from "@/types/GameHook";
+import {Divider} from "@chakra-ui/react";
 
 interface Props {
     gameHook: GameHook
@@ -30,13 +31,15 @@ const GamePageLayout: React.FC<Props> = ({ gameHook, headerText, subHeaderText, 
                 headerText={headerText}
                 subHeaderText={subHeaderText}
             />
+            <Divider />
+            {children}
+            {children && <Divider />}
             <Game
                 unityProvider={unityProvider}
                 isLoaded={isLoaded}
                 requestFullscreen={requestFullscreen}
                 controls={controls}
             />
-            {children}
         </Layout>
     );
 };

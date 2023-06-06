@@ -4,7 +4,7 @@ import {GiBattleGear, GiBolterGun} from "react-icons/gi";
 
 export const APTOS_ARENA: Game = {
     title: "Aptos Arena",
-    description: "Unleash Epic Combos and Collect Exclusive Aptos NFTs in the Ultimate 2D Platform Fighter!",
+    description: "Fight as your Aptos NFTs in a 2D Platform Brawler!",
     href: "/arena",
     icon: GiBattleGear
 }

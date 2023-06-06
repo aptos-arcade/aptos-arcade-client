@@ -21,8 +21,8 @@ const useAptosArena: GameHook = () => {
     } = useGame("arena");
 
     useEffect(() => {
-        if(isLoaded && account?.address?.toString() !== undefined) {
-            sendMessage("WalletManager", "SetAccountAddress", account.address.toString());
+        if(isLoaded) {
+            sendMessage("WalletManager", "SetAccountAddress", account?.address?.toString() || "");
         }
     }, [account?.address, isLoaded, sendMessage, walletManagerActive]);
 

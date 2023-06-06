@@ -59,12 +59,10 @@ const ConnectWallet: React.FC = () => {
             size={'sm'}
         >
             <MenuButton
-                py={2}
                 transition="all 0.3s"
-                // bg='#1A202C'
-                colorScheme='transparent'
+                // colorScheme='transparent'
                 color='white'
-                size='sm'
+                size='md'
                 as={mobileView ? IconButton : Button} 
                 variant={'solid'}
                 rightIcon={!mobileView ? <ChevronDownIcon /> : undefined}
@@ -120,25 +118,6 @@ const ConnectWallet: React.FC = () => {
                                     gap={4}
                                 >
                                     {wallet.adapter.name}
-                                    {
-                                        wallet.adapter.name === 'Pontem' && (
-                                            <Flex
-                                                alignItems='center'
-                                                bg='green.500'
-                                                rounded='lg'
-                                                p={1}
-
-                                            >
-                                                <Text
-                                                    fontSize='xs'
-                                                    color='white'
-                                                    fontWeight='bold'
-                                                >
-                                                    Popular
-                                                </Text>
-                                            </Flex>
-                                        )
-                                    }
                                 </Flex>
                             </MenuItem>
                         ))
