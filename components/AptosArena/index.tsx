@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {CircularProgress, Heading, HStack, Text, VStack} from "@chakra-ui/react";
+import {Heading, HStack, Text, VStack} from "@chakra-ui/react";
 
 import PlayerCreation from "@/components/AptosArena/PlayerCreation";
 import Characters from "@/components/AptosArena/CharacterSelect/Characters";
@@ -9,6 +9,7 @@ import MeleeWeapons from "@/components/AptosArena/MeleeWeaponSelect/MeleeWeapons
 import usePlayer from "@/hooks/aptosArena/usePlayer";
 import BrawlerItem from "@/components/AptosArena/BrawlerDisplay/BrawlerItem";
 import ConnectWallet from "@/components/Navbar/ConnectWallet";
+import CircularProgress from "@/components/Utilities/CircularProgress";
 
 
 const AptosArena = () => {

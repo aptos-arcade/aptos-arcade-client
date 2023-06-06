@@ -1,12 +1,13 @@
 import React from 'react'
 
-import {Card, CircularProgress, Heading, useDisclosure, VStack} from '@chakra-ui/react';
+import {Card, Heading, useDisclosure, VStack} from '@chakra-ui/react';
 
 import { Unity } from 'react-unity-webgl';
 import {UnityProvider} from "react-unity-webgl/distribution/types/unity-provider";
 
 import GetStarted from "@/components/Game/GetStarted";
 import ControlsModal from "@/components/ControlsModal";
+import CircularProgress from "@/components/Utilities/CircularProgress";
 
 import {Controls} from "@/types/Controls";
 
@@ -52,10 +53,7 @@ const Game: React.FC<Props> = ({ unityProvider, isLoaded, requestFullscreen, con
                     {
                         !isLoaded && (
                             <CircularProgress
-                                isIndeterminate
                                 size='80px'
-                                trackColor='transparent'
-                                color='blue.200'
                                 position='absolute'
                                 left='50%'
                                 top='50%'

@@ -1,11 +1,12 @@
 import React from 'react';
 
-import {VStack, Text, CircularProgress, useDisclosure} from "@chakra-ui/react";
+import {VStack, Text, useDisclosure} from "@chakra-ui/react";
 
 import EquipMeleeWeapon from "@/components/AptosArena/MeleeWeaponSelect/EquipMeleeWeapon";
 import MintMeleeWeapon from "@/components/AptosArena/MeleeWeaponSelect/MintMeleeWeapon";
 import Button from "@/components/Utilities/Button";
 import Modal from "@/components/Utilities/Modal";
+import CircularProgress from "@/components/Utilities/CircularProgress";
 
 import useMeleeWeapons from "@/hooks/aptosArena/useMeleeWeapons";
 
@@ -43,7 +44,7 @@ const MeleeWeapons = () => {
                     <VStack>
                         {
                             hasPlayerMintedLoading ? (
-                                <CircularProgress isIndeterminate />
+                                <CircularProgress />
                             ) : (
                                 hasPlayerMintedMeleeWeapon ? (
                                     meleeWeaponsLoading ? (
