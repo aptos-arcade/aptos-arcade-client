@@ -13,7 +13,7 @@ interface ToastMessage {
 
 const useAptosTransaction = () => {
 
-    const { client, updateClient } = useAptos();
+    const { provider, updateClient } = useAptos();
 
     const { signAndSubmitTransaction } = useWalletAdapter();
 
@@ -22,7 +22,7 @@ const useAptosTransaction = () => {
     const submitTransaction = async (transaction: TransactionPayload, toastMessage: ToastMessage) => {
         await signAndSubmitTransaction(transaction, {checkSuccess: true})
             .then(async ({hash}) => {
-                await client.waitForTransactionWithResult(hash)
+                await provider.aptosClient.waitForTransactionWithResult(hash)
                     // @ts-ignore
                     .then(async (transaction: Transaction_UserTransaction) => {
                         if(transaction.success) {

@@ -1,0 +1,71 @@
+import {ViewRequest} from "aptos/src/generated";
+import {moduleToString} from "@/services/aptosUtils";
+import {playerModule, meleeWeaponModule} from "@/data/modules";
+import {AptosClient} from "aptos";
+import {Module} from "@/types/Aptos";
+
+export const viewFunction = (module: Module, functionName: string, args: string[], typeArgs: string[]): ViewRequest => ({
+    function: `${moduleToString(module)}::${functionName}`,
+    arguments: args,
+    type_arguments: typeArgs
+})
+
+export const getPlayerTokenAddress = (client: AptosClient, playerAddress: string): Promise<string> =>
+    client.view(viewFunction(
+        playerModule,
+        "get_player_token_address",
+        [playerAddress],
+        []
+    ))
+        .then((result) => result[0] as string)
+        .catch(() => "")
+
+export const getPlayerCharacterData = (client: AptosClient, playerAddress: string): Promise<string[]> =>
+    client.view(viewFunction(
+        playerModule,
+        "get_player_character",
+        [playerAddress],
+        []
+    ))
+        .then((result) => result as string[])
+        .catch(() => [])
+
+export const getPlayerMeleeWeaponData = (client: AptosClient, playerAddress: string): Promise<number[]> =>
+    client.view(viewFunction(
+        playerModule,
+        "get_player_melee_weapon",
+        [playerAddress],
+        []
+    ))
+        .then((result) => result.map((value) => parseInt(value as string)))
+        .catch(() => [])
+
+export const getMeleeWeaponCollectionAddress = (client: AptosClient): Promise<string> =>
+    client.view(viewFunction(
+        meleeWeaponModule,
+        "get_collection_address",
+        [],
+        []
+    ))
+        .then((result) => result[0] as string)
+        .catch(() => "")
+
+export const getMeleeWeaponData = (client: AptosClient, address: string): Promise<number[]> =>
+    client.view(viewFunction(
+        meleeWeaponModule,
+        "get_melee_weapon_data",
+        [address],
+        []
+    ))
+        .then((result) => result.map((value) => parseInt(value as string)))
+        .catch(() => [])
+
+export const getHasPlayerMintedMeleeWeapon = (client: AptosClient, playerAddress: string): Promise<boolean> =>
+    client.view(viewFunction(
+        meleeWeaponModule,
+        "has_player_minted",
+        [playerAddress],
+        []
+    ))
+        .then((result) => result[0] as boolean)
+        .catch(() => false)

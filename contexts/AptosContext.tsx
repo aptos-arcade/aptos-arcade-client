@@ -2,15 +2,15 @@ import { createContext, ReactNode, FC, useContext, useState, useEffect, useCallb
 
 import { useWallet } from "@manahippo/aptos-wallet-adapter";
 
-import { AptosClient } from "aptos";
+import { Provider } from "aptos";
 
-import { getAptosClient } from "@/services/aptosClients";
+import {getAptosProvider} from "@/services/aptosClients";
 import { getNetworkSlug } from "@/services/network";
 
 import { SupportedNetwork } from "@/types/SupportedNetwork";
 
 interface ContextType {
-    client: AptosClient;
+    provider: Provider;
     network: SupportedNetwork
     updateClient: () => Promise<void>;
 }
@@ -18,7 +18,7 @@ interface ContextType {
 export const DEFAULT_NETWORK: SupportedNetwork = 'mainnet';
 
 export const AptosContext = createContext<ContextType>({
-    client: getAptosClient(DEFAULT_NETWORK),
+    provider: getAptosProvider(),
     network: DEFAULT_NETWORK,
     updateClient: async () => {}
 });
@@ -35,22 +35,22 @@ export const AptosProvider : FC<AptosContextProps> = ({ children }) => {
 
     let network = getNetworkSlug(networkInfo?.name) || DEFAULT_NETWORK;
 
-    const [client, setClient] = useState<AptosClient>(getAptosClient(network));
+    const [provider, setProvider] = useState<Provider>(getAptosProvider());
 
-    const updateClient = useCallback(async () => {
-        setClient(getAptosClient(network));
+    const updateProvider = useCallback(async () => {
+        setProvider(getAptosProvider);
     }, [network])
 
     useEffect(() => {
-        updateClient();
-    }, [networkInfo, updateClient]);
+        updateProvider();
+    }, [networkInfo, updateProvider]);
  
     return (
         <AptosContext.Provider
             value={{
-                client,
+                provider,
                 network,
-                updateClient
+                updateClient: updateProvider
             }}
         >
             {children}
