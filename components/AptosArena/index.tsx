@@ -10,11 +10,12 @@ import usePlayer from "@/hooks/aptosArena/usePlayer";
 import BrawlerItem from "@/components/AptosArena/BrawlerDisplay/BrawlerItem";
 import ConnectWallet from "@/components/Navbar/ConnectWallet";
 import CircularProgress from "@/components/Utilities/CircularProgress";
+import RangedWeapons from "@/components/AptosArena/RangedWeaponSelect/RangedWeapons";
 
 
 const AptosArena = () => {
 
-    const { createPlayer, playerTokenAddress, playerMeleeWeapon, playerCharacter, loading, walletConnected } = usePlayer()
+    const { createPlayer, playerTokenAddress, playerMeleeWeapon, playerRangedWeapon, playerCharacter, loading, walletConnected } = usePlayer()
 
     return (
         <VStack
@@ -61,9 +62,14 @@ const AptosArena = () => {
                                     title={"Melee Weapon"}
                                     value={playerMeleeWeapon?.name || 'No Melee Weapon'}
                                     button={
-                                        <MeleeWeapons
-
-                                        />
+                                        <MeleeWeapons/>
+                                    }
+                                />
+                                <BrawlerItem
+                                    title={"Ranged Weapon"}
+                                    value={playerRangedWeapon?.name || 'No Ranged Weapon'}
+                                    button={
+                                        <RangedWeapons />
                                     }
                                 />
                             </HStack>

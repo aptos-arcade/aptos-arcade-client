@@ -1,6 +1,6 @@
 import {ViewRequest} from "aptos/src/generated";
 import {moduleToString} from "@/services/aptosUtils";
-import {playerModule, meleeWeaponModule} from "@/data/modules";
+import {playerModule, meleeWeaponModule, rangedWeaponModule} from "@/data/modules";
 import {AptosClient} from "aptos";
 import {Module} from "@/types/Aptos";
 
@@ -69,3 +69,43 @@ export const getHasPlayerMintedMeleeWeapon = (client: AptosClient, playerAddress
     ))
         .then((result) => result[0] as boolean)
         .catch(() => false)
+
+export const getHasPlayerMintedRangedWeapon = (client: AptosClient, playerAddress: string): Promise<boolean> =>
+    client.view(viewFunction(
+        rangedWeaponModule,
+        "has_player_minted",
+        [playerAddress],
+        []
+    ))
+        .then((result) => result[0] as boolean)
+        .catch(() => false)
+
+export const getRangedWeaponCollectionAddress = (client: AptosClient): Promise<string> =>
+    client.view(viewFunction(
+        rangedWeaponModule,
+        "get_collection_address",
+        [],
+        []
+    ))
+        .then((result) => result[0] as string)
+        .catch(() => "")
+
+export const getRangedWeaponData = (client: AptosClient, address: string): Promise<number[]> =>
+    client.view(viewFunction(
+        rangedWeaponModule,
+        "get_ranged_weapon_data",
+        [address],
+        []
+    ))
+        .then((result) => result.map((value) => parseInt(value as string)))
+        .catch(() => [])
+
+export const getPlayerRangedWeaponData = (client: AptosClient, playerAddress: string): Promise<number[]> =>
+    client.view(viewFunction(
+        playerModule,
+        "get_player_ranged_weapon",
+        [playerAddress],
+        []
+    ))
+        .then((result) => result.map((value) => parseInt(value as string)))
+        .catch(() => [])

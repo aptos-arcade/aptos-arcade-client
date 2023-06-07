@@ -11,6 +11,11 @@ export const meleeWeaponModule: Module = {
     module_name: "melee_weapon"
 }
 
+export const rangedWeaponModule: Module = {
+    module_address: aptosArenaModuleAddress,
+    module_name: "ranged_weapon"
+}
+
 export const scriptsModule: Module = {
     module_address: aptosArenaModuleAddress,
     module_name: "scripts"

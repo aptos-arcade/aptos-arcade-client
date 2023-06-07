@@ -11,7 +11,7 @@ import {
     getMeleeWeaponCollectionAddress,
     getMeleeWeaponData
 } from "@/services/viewFunctionBuilder";
-import {equipMeleeWeaponPayload, mintMeleeWeaponPayload} from "@/services/transactionBuilder";
+import {equipMeleeWeaponPayload, mintAndEquipMeleeWeapon, mintMeleeWeaponPayload} from "@/services/transactionBuilder";
 
 import {meleeWeaponNames} from "@/data/meleeWeapons";
 
@@ -69,7 +69,7 @@ const useMeleeWeapons = () => {
     }, [fetchMeleeWeapons]);
 
     const mintMeleeWeapon = async () => {
-        await submitTransaction(mintMeleeWeaponPayload, {
+        await submitTransaction(mintAndEquipMeleeWeapon, {
             title: "Melee weapon created",
             description: "Melee weapon created"
         });

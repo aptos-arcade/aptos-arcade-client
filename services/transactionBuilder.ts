@@ -31,3 +31,17 @@ export const equipCharacterPayload = (creatorAddress: string, collectionName: st
     []
 );
 
+export const mintRangedWeaponPayload = scriptTransactionPayload("mint_ranged_weapon", [], []);
+
+export const equipRangedWeaponPayload = (rangedWeaponAddress: string): TransactionPayload => scriptTransactionPayload(
+    "equip_ranged_weapon",
+    [rangedWeaponAddress],
+    []
+);
+
+export const mintAndEquipRangedWeapon = scriptTransactionPayload(
+    "mint_and_equip_ranged_weapon",
+    [],
+    []
+);
+

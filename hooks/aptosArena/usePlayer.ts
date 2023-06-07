@@ -5,13 +5,21 @@ import {useWallet} from "@manahippo/aptos-wallet-adapter";
 import useAptosTransaction from "@/hooks/useAptosTransaction";
 
 import { mintPlayerPayload,} from "@/services/transactionBuilder";
-import {getPlayerCharacterData, getPlayerMeleeWeaponData, getPlayerTokenAddress} from "@/services/viewFunctionBuilder";
+import {
+    getPlayerCharacterData,
+    getPlayerMeleeWeaponData,
+    getPlayerRangedWeaponData,
+    getPlayerTokenAddress
+} from "@/services/viewFunctionBuilder";
 
 import {useAptos} from "@/contexts/AptosContext";
 
+import {meleeWeaponNames} from "@/data/meleeWeapons";
+import {rangedWeaponNames} from "@/data/rangedWeapons";
+
 import {TokenData} from "@/types/TokenData";
 import {MeleeWeaponData} from "@/types/MeleeWeapon";
-import {meleeWeaponNames} from "@/data/meleeWeapons";
+import {RangedWeaponData} from "@/types/RangedWeapon";
 
 const usePlayer = () => {
 
@@ -25,6 +33,7 @@ const usePlayer = () => {
     const [playerTokenAddress, setPlayerTokenAddress] = useState("");
     const [playerCharacter, setPlayerCharacter] = useState<TokenData>();
     const [playerMeleeWeapon, setPlayerMeleeWeapon] = useState<MeleeWeaponData>();
+    const [playerRangedWeapon, setPlayerRangedWeapon] = useState<RangedWeaponData>();
 
 
     const fetchPlayerTokenAddress = useCallback(async () => {
@@ -75,6 +84,23 @@ const usePlayer = () => {
         fetchPlayerMeleeWeapon();
     }, [fetchPlayerMeleeWeapon]);
 
+    const fetchPlayerRangedWeapon = useCallback(async () => {
+        if(account?.address?.toString()) {
+            const playerRangedWeapon = await getPlayerRangedWeaponData(provider.aptosClient, account?.address?.toString());
+            if(playerRangedWeapon.length > 0) {
+                setPlayerRangedWeapon({
+                    power: playerRangedWeapon[0],
+                    name: rangedWeaponNames[playerRangedWeapon[1] - 1],
+                    weaponType: playerRangedWeapon[1],
+                })
+            }
+        }
+    }, [account?.address, provider.aptosClient]);
+
+    useEffect(() => {
+        fetchPlayerRangedWeapon();
+    }, [fetchPlayerRangedWeapon]);
+
     const createPlayer = async () => {
         await submitTransaction(mintPlayerPayload, {
             title: "Player created",
@@ -88,7 +114,8 @@ const usePlayer = () => {
         loading,
         playerTokenAddress,
         playerCharacter,
-        playerMeleeWeapon
+        playerMeleeWeapon,
+        playerRangedWeapon
     }
 }
 
