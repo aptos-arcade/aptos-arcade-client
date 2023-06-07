@@ -23,6 +23,16 @@ const MeleeWeapons = () => {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
+    const onSelect = async (meleeWeaponAddress: string) => {
+        await equipMeleeWeapon(meleeWeaponAddress)
+        onClose()
+    }
+
+    const onMint = async () => {
+        await mintMeleeWeapon()
+        onClose()
+    }
+
     return (
         <>
             <Button
@@ -55,7 +65,7 @@ const MeleeWeapons = () => {
                                                 <EquipMeleeWeapon
                                                     key={index}
                                                     weaponName={meleeWeapon.name}
-                                                    equipMeleeWeapon={() => equipMeleeWeapon(meleeWeapon.address)}
+                                                    equipMeleeWeapon={() => onSelect(meleeWeapon.address)}
                                                 />
                                             ))
                                         ) : (
@@ -67,7 +77,7 @@ const MeleeWeapons = () => {
                                         )
                                     )
                                 ) : (
-                                    <MintMeleeWeapon mintMeleeWeapon={mintMeleeWeapon} />
+                                    <MintMeleeWeapon mintMeleeWeapon={onMint} />
                                 )
                             )
                         }

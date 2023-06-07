@@ -23,6 +23,11 @@ const Characters: React.FC<Props> = ({ selectedCharacter }) => {
         return characters.filter(character => character.name !== selectedCharacter?.name)
     }, [characters, selectedCharacter])
 
+    const onSelect = async (character: TokenData) => {
+        await equipCharacter(character)
+        onClose()
+    }
+
     return (
         <>
             <Button buttonType={'primary'} onClick={onOpen}>
@@ -47,7 +52,7 @@ const Characters: React.FC<Props> = ({ selectedCharacter }) => {
                                     <EquipCharacter
                                         key={index}
                                         character={character}
-                                        equipCharacter={() => equipCharacter(character)}
+                                        equipCharacter={() => onSelect(character)}
                                     />
                                 ))
                             ) : (

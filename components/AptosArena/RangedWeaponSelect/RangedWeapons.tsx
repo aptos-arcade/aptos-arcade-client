@@ -21,7 +21,17 @@ const RangedWeapons = () => {
         equipRangedWeapon
     } = useRangedWeapons();
 
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
+    const onSelect = async (rangedWeaponAddress: string) => {
+        await equipRangedWeapon(rangedWeaponAddress)
+        onClose()
+    }
+
+    const onMint = async () => {
+        await mintRangedWeapon()
+        onClose()
+    }
 
     return (
         <>
@@ -55,7 +65,7 @@ const RangedWeapons = () => {
                                                 <EquipRangedWeapon
                                                     key={index}
                                                     weaponName={rangedWeapon.name}
-                                                    equipRangedWeapon={() => equipRangedWeapon(rangedWeapon.address)}
+                                                    equipRangedWeapon={() => onSelect(rangedWeapon.address)}
                                                 />
                                             ))
                                         ) : (
@@ -67,7 +77,7 @@ const RangedWeapons = () => {
                                         )
                                     )
                                 ) : (
-                                    <MintRangedWeapon mintRangedWeapon={mintRangedWeapon} />
+                                    <MintRangedWeapon mintRangedWeapon={onMint} />
                                 )
                             )
                         }
