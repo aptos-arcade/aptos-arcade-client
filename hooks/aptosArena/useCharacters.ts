@@ -23,11 +23,14 @@ const useCharacters = () => {
     const fetchCharacters = useCallback(async () => {
         if(account?.address?.toString()) {
             const tokens = await provider.indexerClient.getAccountNFTs(account.address.toString());
-            console.log(tokens.current_token_ownerships)
+            console.log(tokens.current_token_ownerships.map((token) => ({
+                collection_name: token.current_collection_data?.collection_name,
+                collection_data_id_hash: token.current_collection_data?.collection_data_id_hash
+            })))
             const query = await provider.indexerClient.queryIndexer<TokenDataQuery>({
-                query: `query TokenOwnership($owner_address: String, $token_data_id_hash: [String]) {
+                query: `query TokenOwnership($owner_address: String, $collection_data_id_hash: [String]) {
                   current_token_ownerships(
-                    where: {token_data_id_hash: {_in: $token_data_id_hash}, owner_address: {_eq: $owner_address}}
+                    where: {collection_data_id_hash: {_in: $collection_data_id_hash}, owner_address: {_eq: $owner_address}}
                   ) {
                     name
                     collection_name
@@ -37,14 +40,14 @@ const useCharacters = () => {
                 }`,
                 variables: {
                     "owner_address": account.address.toString(),
-                    "token_data_id_hash": [
-                        "2b3602546519aa29cf9668a30a255a668b91c4814332165476fb0a78114dcd26",
-                        "2ff6da7d980b29bc0a937acbfa9a15ca024037ff1913f2b9023934ec6ed6ba8b",
-                        "cd70caeb1b1805aca193a635b3ddd28f58cd6011cf1cec6049d012e64623af6e",
-                        "1d3cb7c3714f02cc30c74a04ab35358f9f7e029c29416fe7d9b4cf8a450555ee",
-                        "4f95e93c16f7ea56d1e20067e6c28c02df2ad91fef6f517484d8b5c120c4b73b",
-                        "9a5c4ae986d8d18b773e6fbad6a88abb01325fe1e40ce0d64b3b97559f297302",
-                        "769cf4352de8ccf48e3d343c156a5dd942ff5ce182a43fc7c30ff8fa1fd41467",
+                    "collection_data_id_hash": [
+                        'da59e5f610419f274a20341fb198bf98415712de11a4468cfd45cbe495600c2a',
+                        'e6a7399d10406b993e25d8a3bf24842413ba8f1a08444dbfa5f1c31b09f0d16e',
+                        'b0c10aba073b4ed474fa9615df596f9e9a689b8b9482bae5ae2832fab970a42d',
+                        'bc79c099fc7d0f853d8b9d69f34138c07bbb0caf3b75ee70d163e524153c8561',
+                        '7ac8cecb76edbbd5da40d719bbb9795fc5744e4098ee0ce1be4bb86c90f42301',
+                        'aece05d29c0b543be608d73c44d8bb46a09e18e06097f7fdec078689e52ed118',
+                        'a23b49b39acacce0adbcc328f94b910eb4adf7aa3258e7362cfbf2be505e1ec7'
                     ]
                 }
             })
