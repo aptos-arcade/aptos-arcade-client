@@ -32,15 +32,19 @@ const Game: React.FC<Props> = ({ unityProvider, isLoaded, requestFullscreen, con
             <VStack
                 spacing={8}
             >
-                <Heading
-                    color={'blue.200'}
+                <VStack
+                    spacing={4}
                 >
-                    Gameplay
-                </Heading>
-                <GetStarted
-                    requestFullscreen={requestFullscreen}
-                    onOpen={onOpen}
-                />
+                    <Heading
+                        color={'blue.200'}
+                    >
+                        Play
+                    </Heading>
+                    <GetStarted
+                        requestFullscreen={requestFullscreen}
+                        onOpen={onOpen}
+                    />
+                </VStack>
                 <Card
                     shadow='lg'
                     position='relative'
@@ -66,8 +70,6 @@ const Game: React.FC<Props> = ({ unityProvider, isLoaded, requestFullscreen, con
                         style={{
                             width: '100%',
                             aspectRatio: '16/9'
-                            // width: 0,
-                            // height: 0,
                         }}
                     />
                 </Card>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Text, VStack} from "@chakra-ui/react";
+import {HStack, Text, VStack} from "@chakra-ui/react";
 
 import {GiRetroController} from "react-icons/gi";
 import {AiOutlineFullscreen} from "react-icons/ai";
@@ -36,18 +36,21 @@ const GetStarted: React.FC<Props> = ({ requestFullscreen, onOpen }) => {
             <Text>
                 Get started by viewing the controls and entering fullscreen.
             </Text>
-            {
-                controls.map((control, index) => (
-                    <GetStartedStep
-                        key={index}
-                        index={index}
-                        onClick={control.onClick}
-                        icon={control.icon}
-                        label={control.label}
-                    />
-                ))
-            }
-
+            <HStack
+                spacing={8}
+            >
+                {
+                    controls.map((control, index) => (
+                        <GetStartedStep
+                            key={index}
+                            index={index}
+                            onClick={control.onClick}
+                            icon={control.icon}
+                            label={control.label}
+                        />
+                    ))
+                }
+            </HStack>
         </VStack>
     );
 };

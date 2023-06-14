@@ -1,9 +1,9 @@
 import {Module} from "@/types/Aptos";
 import {aptosArenaModuleAddress} from "@/data/moduleAddresses";
 
-export const playerModule: Module = {
+export const brawlerModule: Module = {
     module_address: aptosArenaModuleAddress,
-    module_name: "player"
+    module_name: "brawler"
 }
 
 export const meleeWeaponModule: Module = {
@@ -19,4 +19,9 @@ export const rangedWeaponModule: Module = {
 export const scriptsModule: Module = {
     module_address: aptosArenaModuleAddress,
     module_name: "scripts"
+}
+
+export const aptosArenaModule: Module = {
+    module_address: aptosArenaModuleAddress,
+    module_name: "aptos_arena"
 }

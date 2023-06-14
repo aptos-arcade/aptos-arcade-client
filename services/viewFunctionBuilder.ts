@@ -1,6 +1,6 @@
 import {ViewRequest} from "aptos/src/generated";
-import {moduleToString} from "@/services/aptosUtils";
-import {playerModule, meleeWeaponModule, rangedWeaponModule} from "@/data/modules";
+import {canonicalAddress, moduleToString} from "@/services/aptosUtils";
+import {aptosArenaModule, brawlerModule, meleeWeaponModule, rangedWeaponModule} from "@/data/modules";
 import {AptosClient} from "aptos";
 import {Module} from "@/types/Aptos";
 
@@ -12,7 +12,7 @@ export const viewFunction = (module: Module, functionName: string, args: string[
 
 export const getPlayerTokenAddress = (client: AptosClient, playerAddress: string): Promise<string> =>
     client.view(viewFunction(
-        playerModule,
+        brawlerModule,
         "get_player_token_address",
         [playerAddress],
         []
@@ -22,7 +22,7 @@ export const getPlayerTokenAddress = (client: AptosClient, playerAddress: string
 
 export const getPlayerCharacterData = (client: AptosClient, playerAddress: string): Promise<string[]> =>
     client.view(viewFunction(
-        playerModule,
+        brawlerModule,
         "get_player_character",
         [playerAddress],
         []
@@ -32,7 +32,7 @@ export const getPlayerCharacterData = (client: AptosClient, playerAddress: strin
 
 export const getPlayerMeleeWeaponData = (client: AptosClient, playerAddress: string): Promise<number[]> =>
     client.view(viewFunction(
-        playerModule,
+        brawlerModule,
         "get_player_melee_weapon",
         [playerAddress],
         []
@@ -47,7 +47,7 @@ export const getMeleeWeaponCollectionAddress = (client: AptosClient): Promise<st
         [],
         []
     ))
-        .then((result) => result[0] as string)
+        .then((result) => canonicalAddress(result[0] as string))
         .catch(() => "")
 
 export const getMeleeWeaponData = (client: AptosClient, address: string): Promise<number[]> =>
@@ -87,7 +87,7 @@ export const getRangedWeaponCollectionAddress = (client: AptosClient): Promise<s
         [],
         []
     ))
-        .then((result) => result[0] as string)
+        .then((result) => canonicalAddress(result[0] as string))
         .catch(() => "")
 
 export const getRangedWeaponData = (client: AptosClient, address: string): Promise<number[]> =>
@@ -102,8 +102,18 @@ export const getRangedWeaponData = (client: AptosClient, address: string): Promi
 
 export const getPlayerRangedWeaponData = (client: AptosClient, playerAddress: string): Promise<number[]> =>
     client.view(viewFunction(
-        playerModule,
+        brawlerModule,
         "get_player_ranged_weapon",
+        [playerAddress],
+        []
+    ))
+        .then((result) => result.map((value) => parseInt(value as string)))
+        .catch(() => [])
+
+export const getPlayerEloRatingData = (client: AptosClient, playerAddress: string): Promise<number[]> =>
+    client.view(viewFunction(
+        aptosArenaModule,
+        "get_player_elo_rating",
         [playerAddress],
         []
     ))

@@ -22,11 +22,6 @@ const useCharacters = () => {
 
     const fetchCharacters = useCallback(async () => {
         if(account?.address?.toString()) {
-            const tokens = await provider.indexerClient.getAccountNFTs(account.address.toString());
-            console.log(tokens.current_token_ownerships.map((token) => ({
-                collection_name: token.current_collection_data?.collection_name,
-                collection_data_id_hash: token.current_collection_data?.collection_data_id_hash
-            })))
             const query = await provider.indexerClient.queryIndexer<TokenDataQuery>({
                 query: `query TokenOwnership($owner_address: String, $collection_data_id_hash: [String]) {
                   current_token_ownerships(
@@ -51,7 +46,6 @@ const useCharacters = () => {
                     ]
                 }
             })
-            console.log(query)
             setCharacters(query.current_token_ownerships);
         }
     }, [account?.address, provider.indexerClient])

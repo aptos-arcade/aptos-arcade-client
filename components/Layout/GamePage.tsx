@@ -32,14 +32,14 @@ const GamePageLayout: React.FC<Props> = ({ gameHook, headerText, subHeaderText, 
                 subHeaderText={subHeaderText}
             />
             <Divider />
-            {children}
-            {children && <Divider />}
             <Game
                 unityProvider={unityProvider}
                 isLoaded={isLoaded}
                 requestFullscreen={requestFullscreen}
                 controls={controls}
             />
+            {children && <Divider />}
+            {children}
         </Layout>
     );
 };

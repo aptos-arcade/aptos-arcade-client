@@ -48,6 +48,7 @@ const useRangedWeapons = () => {
     const fetchRangedWeapons = useCallback(async () => {
         if(account?.address?.toString()) {
             const collectionAddress = await getRangedWeaponCollectionAddress(provider.aptosClient);
+            console.log(collectionAddress);
             const tokens = await provider.indexerClient.getTokenOwnedFromCollectionAddress(
                 account.address.toString(),
                 collectionAddress

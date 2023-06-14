@@ -6,10 +6,10 @@ export const scriptTransactionPayload = (functionName: string, args: any[], type
     type: "entry_function_payload",
     function: `${moduleToString(scriptsModule)}::${functionName}`,
     arguments: args,
-    type_arguments: typeArgs
+    type_arguments: typeArgs,
 })
 
-export const mintPlayerPayload = scriptTransactionPayload("mint_player", [], []);
+export const mintPlayerPayload = scriptTransactionPayload("init_player", [], []);
 
 export const mintMeleeWeaponPayload = scriptTransactionPayload("mint_melee_weapon", [], []);
 
@@ -45,3 +45,14 @@ export const mintAndEquipRangedWeapon = scriptTransactionPayload(
     []
 );
 
+export const createMatch = (teams: string[][]) => scriptTransactionPayload(
+    "create_match",
+    [teams],
+    []
+)
+
+export const setMatchResult = (matchAddress: string, winnerIndex: number) => scriptTransactionPayload(
+    "set_match_result",
+    [matchAddress, winnerIndex],
+    []
+)
