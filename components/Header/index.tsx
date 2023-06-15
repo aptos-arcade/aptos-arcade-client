@@ -16,6 +16,7 @@ const Header: React.FC<Props> = ({ headerText, subHeaderText }) => {
             fontSize="48px"
             fontWeight="bold"
             color='blue.200'
+            textAlign={'center'}
         >
             {headerText}
         </Heading>

@@ -15,15 +15,20 @@ const BrawlerItem: React.FC<Props> = ({ title, value, button}) => {
             borderWidth={2}
             borderRadius={8}
             p={4}
+            flex={1}
             borderColor='blue.200'
+            justifyContent={'space-between'}
         >
             <Text
                 fontSize={'xl'}
                 fontWeight={'bold'}
+                textAlign={'center'}
             >
                 {title}
             </Text>
-            <Text>
+            <Text
+                textAlign={'center'}
+            >
                 {value}
             </Text>
             {button}

@@ -15,14 +15,15 @@ const Layout: React.FC<Props> = ({ children }) => {
             minWidth='100vw'
             bg='#1A202C'
         >
-            <Navbar
-
-            />
+            <Navbar />
             <Container
                 maxW='5xl'
                 display='flex'
                 flexDirection='column'
-                pt={navbarHeight}
+                pt={{
+                    base: navbarHeight.base + 4,
+                    md: navbarHeight.md + 4
+                }}
                 pb={16}
                 gap={8}
             >

@@ -48,7 +48,6 @@ const useRangedWeapons = () => {
     const fetchRangedWeapons = useCallback(async () => {
         if(account?.address?.toString()) {
             const collectionAddress = await getRangedWeaponCollectionAddress(provider.aptosClient);
-            console.log(collectionAddress);
             const tokens = await provider.indexerClient.getTokenOwnedFromCollectionAddress(
                 account.address.toString(),
                 collectionAddress
@@ -72,15 +71,13 @@ const useRangedWeapons = () => {
 
     const mintRangedWeapon = async () => {
         await submitTransaction(mintAndEquipRangedWeapon, {
-            title: "Ranged weapon created",
-            description: "Ranged weapon created"
+            title: "Ranged weapon minted!",
         });
     }
 
     const equipRangedWeapon = async (RangedWeaponAddress: string) => {
         await submitTransaction(equipRangedWeaponPayload(RangedWeaponAddress), {
-            title: "Ranged weapon created",
-            description: "Ranged weapon created"
+            title: "Ranged weapon equipped!",
         });
     }
 

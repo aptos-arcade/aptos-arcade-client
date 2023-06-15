@@ -7,7 +7,7 @@ interface Props {
     value: string
 }
 
-const BrawlerItem: React.FC<Props> = ({ title, value}) => {
+const StatsItem: React.FC<Props> = ({ title, value}) => {
     return (
         <VStack
             spacing={4}
@@ -16,6 +16,7 @@ const BrawlerItem: React.FC<Props> = ({ title, value}) => {
             p={4}
             flex={1}
             borderColor='blue.200'
+            w={'100%'}
         >
             <Text
                 fontSize={'xl'}
@@ -30,4 +31,4 @@ const BrawlerItem: React.FC<Props> = ({ title, value}) => {
     );
 };
 
-export default BrawlerItem;
+export default StatsItem;

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {
+    Box,
     Flex,
     HStack, Image,
 } from '@chakra-ui/react'
@@ -10,7 +11,10 @@ import Link from "next/link";
 import NavLinks from "@/components/Navbar/NavLinks";
 import MobileNav from "@/components/Navbar/MobileNav";
 
-export const navbarHeight = 20;
+export const navbarHeight = {
+    base: 24,
+    md: 24,
+};
   
 const Navbar : React.FC = ({ }) => {
     return (
@@ -36,14 +40,18 @@ const Navbar : React.FC = ({ }) => {
                     <Image
                         src='/logo.png'
                         alt='logo'
-                        h={navbarHeight}
+                        boxSize={{base: 16, md: 20}}
                         transition='all 0.2s ease-in-out'
                         _hover={{
                             opacity: 0.9,
                         }}
                     />
                 </Link>
-                <NavLinks />
+                <Box
+                    display={{base: 'none', md: 'block'}}
+                >
+                    <NavLinks />
+                </Box>
             </HStack>
             <HStack>
                 <ConnectWallet />

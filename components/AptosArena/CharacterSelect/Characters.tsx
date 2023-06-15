@@ -31,7 +31,7 @@ const Characters: React.FC<Props> = ({ selectedCharacter }) => {
     return (
         <>
             <Button buttonType={'primary'} onClick={onOpen}>
-                Equip Character
+                Select
             </Button>
             <Modal
                 modalHeader={

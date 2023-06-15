@@ -39,7 +39,7 @@ const RangedWeapons = () => {
                 buttonType={'primary'}
                 onClick={onOpen}
             >
-                Equip Ranged Weapon
+                Equip
             </Button>
             <Modal
                 modalHeader={

@@ -1,9 +1,8 @@
 import React from 'react';
-import {Heading, HStack, Text, VStack} from "@chakra-ui/react";
+import {Flex, Heading, Text, VStack} from "@chakra-ui/react";
 import ConnectWallet from "@/components/Navbar/ConnectWallet";
 import useStats from "@/hooks/aptosArena/useStats";
 import CircularProgress from "@/components/Utilities/CircularProgress";
-import BrawlerItem from "@/components/AptosArena/BrawlerDisplay/BrawlerItem";
 import StatsItem from "@/components/AptosArena/PlayerStats/StatsItem";
 
 const PlayerStats = () => {
@@ -39,8 +38,11 @@ const PlayerStats = () => {
                         loading ? (
                             <CircularProgress isIndeterminate />
                         ) : (
-                            <HStack
+                            <Flex
                                 w='100%'
+                                direction={{base: 'column', md: 'row'}}
+                                alignItems={"center"}
+                                gap={4}
                             >
                                 <StatsItem
                                     title={"ELO Rating"}
@@ -51,7 +53,7 @@ const PlayerStats = () => {
                                     value={`${wins}-${losses}`}
                                 />
 
-                            </HStack>
+                            </Flex>
                         )
                 ) : (
                     <ConnectWallet />

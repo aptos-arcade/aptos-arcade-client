@@ -8,7 +8,6 @@ import { useAptos } from "@/contexts/AptosContext";
 
 interface ToastMessage {
     title: string;
-    description: string;
 }
 
 const useAptosTransaction = () => {
@@ -29,15 +28,14 @@ const useAptosTransaction = () => {
                             await updateClient();
                             toast({
                                 title: toastMessage.title,
-                                description: toastMessage.description,
                                 status: "success",
                                 duration: 5000,
                                 isClosable: true,
                             });
                         } else {
                             toast({
-                                title: "Transaction failed",
-                                description: "Transaction failed",
+                                title: "Transaction failed!",
+                                description: transaction.vm_status,
                                 status: "error",
                                 duration: 5000,
                                 isClosable: true,

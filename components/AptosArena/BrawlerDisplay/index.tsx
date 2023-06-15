@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Heading, HStack, Text, VStack} from "@chakra-ui/react";
+import {Flex, Heading, Text, VStack} from "@chakra-ui/react";
 
 import PlayerCreation from "@/components/AptosArena/PlayerCreation";
 import Characters from "@/components/AptosArena/CharacterSelect/Characters";
@@ -54,8 +54,10 @@ const BrawlerDisplay = () => {
                         <CircularProgress isIndeterminate />
                     ) : (
                         playerTokenAddress ? (
-                            <HStack
-                                spacing={4}
+                            <Flex
+                                gap={4}
+                                direction={{base: 'column', md: 'row'}}
+                                w={'100%'}
                             >
                                 <BrawlerItem
                                     title={"Character"}
@@ -80,7 +82,7 @@ const BrawlerDisplay = () => {
                                         <RangedWeapons />
                                     }
                                 />
-                            </HStack>
+                            </Flex>
                         ) : (
                             <PlayerCreation createPlayer={createPlayer} />
                         )

@@ -103,8 +103,7 @@ const usePlayer = () => {
 
     const createPlayer = async () => {
         await submitTransaction(mintPlayerPayload, {
-            title: "Player created",
-            description: "Player created"
+            title: "Brawler Created",
         });
     }
 

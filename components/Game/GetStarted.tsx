@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {HStack, Text, VStack} from "@chakra-ui/react";
+import {Flex, Text, VStack} from "@chakra-ui/react";
 
 import {GiRetroController} from "react-icons/gi";
 import {AiOutlineFullscreen} from "react-icons/ai";
@@ -33,11 +33,15 @@ const GetStarted: React.FC<Props> = ({ requestFullscreen, onOpen }) => {
             justifyContent='center'
             spacing={4}
         >
-            <Text>
+            <Text
+                textAlign={'center'}
+            >
                 Get started by viewing the controls and entering fullscreen.
             </Text>
-            <HStack
-                spacing={8}
+            <Flex
+                gap={{base: 4, md: 8}}
+                flexDirection={{base: 'column', md: 'row'}}
+                alignItems={"center"}
             >
                 {
                     controls.map((control, index) => (
@@ -50,7 +54,7 @@ const GetStarted: React.FC<Props> = ({ requestFullscreen, onOpen }) => {
                         />
                     ))
                 }
-            </HStack>
+            </Flex>
         </VStack>
     );
 };

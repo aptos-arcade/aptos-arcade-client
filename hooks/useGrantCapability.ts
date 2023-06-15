@@ -28,7 +28,6 @@ const useGrantCapability = (capability: 'casual' | 'ranked', token: Token) => {
             type_arguments: [],
         }, {
             title: `Granted ${capability} capability`,
-            description: "",
         })
     }
 

@@ -39,7 +39,7 @@ const MeleeWeapons = () => {
                 buttonType={'primary'}
                 onClick={onOpen}
             >
-                Equip Melee Weapon
+                Equip
             </Button>
             <Modal
                 modalHeader={
