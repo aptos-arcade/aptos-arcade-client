@@ -19,8 +19,16 @@ export default async function handler(
     if (req.method === 'POST') {
         // get the request body json
         const { body } = req;
-        if(body.teams === undefined || body.teams.length < 2) {
-            res.status(400).json({message: 'Invalid request body'})
+        if(body.teams === undefined) {
+            res.status(400).json({message: 'Teams is undefined'})
+            return;
+        }
+        if(body.teams.length < 2) {
+            res.status(400).json({message: 'Must have at least two teams'})
+            return;
+        }
+        if(body.teams.some((team: string[]) => team.length < 1)) {
+            res.status(400).json({message: 'Teams must have at least one player'})
             return;
         }
         let { aptosClient } = getAptosProvider();
