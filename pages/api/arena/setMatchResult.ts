@@ -27,14 +27,14 @@ export default async function handler(
         let { aptosClient } = getAptosProvider();
         const PK_BYTES = new HexString(process.env.APTOS_ARENA_PK as string).toUint8Array()
         const account = new AptosAccount(PK_BYTES);
-        let createMatchTransactionPayload = setMatchResult(body.matchAddress, body.winnerIndex) as TransactionPayload_EntryFunctionPayload;
+        let setMatchResultTransactionPayload = setMatchResult(body.matchAddress, body.winnerIndex) as TransactionPayload_EntryFunctionPayload;
         const txnRequest = await aptosClient.generateTransaction(
             aptosArenaModuleAddress,
-            createMatchTransactionPayload
+            setMatchResultTransactionPayload
         );
         const signedTxn = await aptosClient.signTransaction(account, txnRequest);
         const transactionRes = await aptosClient.submitTransaction(signedTxn);
-        await aptosClient.waitForTransactionWithResult(transactionRes.hash, { checkSuccess: true})
+        await aptosClient.waitForTransactionWithResult(transactionRes.hash, { checkSuccess: true })
             .then((txRes) => res.status(200).json({message: txRes.hash}))
             .catch((e) => res.status(400).json({message: e.message}));
 

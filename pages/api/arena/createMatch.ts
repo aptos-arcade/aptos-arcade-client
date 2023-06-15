@@ -1,7 +1,7 @@
 import {NextApiRequest, NextApiResponse} from "next";
 
 import {HexString, AptosAccount} from "aptos";
-import { TransactionPayload_EntryFunctionPayload } from "aptos/src/generated";
+import { TransactionPayload_EntryFunctionPayload, UserTransaction } from "aptos/src/generated";
 
 import {createMatch} from "@/services/transactionBuilder";
 import {getAptosProvider} from "@/services/aptosClients";
@@ -34,9 +34,9 @@ export default async function handler(
         const signedTxn = await aptosClient.signTransaction(account, txnRequest);
         const transactionRes = await aptosClient.submitTransaction(signedTxn);
         await aptosClient.waitForTransactionWithResult(transactionRes.hash, { checkSuccess: true})
-            .then((txRes) => res.status(200).json({message: txRes.hash}))
+            .then((txRes) =>
+                res.status(200).json({message: (txRes as UserTransaction).events[0].data.token}))
             .catch((e) => res.status(400).json({message: e.message}));
-
     } else {
         res.status(400).json({message: 'Only POST requests allowed'})
     }
