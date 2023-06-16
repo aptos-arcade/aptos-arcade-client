@@ -14,10 +14,11 @@ interface Props {
     headerText: string,
     subHeaderText: string,
     controls: Controls[]
-    children?: React.ReactNode,
+    beforeGame?: React.ReactNode,
+    afterGame?: React.ReactNode,
 }
 
-const GamePageLayout: React.FC<Props> = ({ gameHook, headerText, subHeaderText, controls, children  }) => {
+const GamePageLayout: React.FC<Props> = ({ gameHook, headerText, subHeaderText, controls, beforeGame, afterGame  }) => {
 
     const {
         unityProvider,
@@ -32,14 +33,16 @@ const GamePageLayout: React.FC<Props> = ({ gameHook, headerText, subHeaderText, 
                 subHeaderText={subHeaderText}
             />
             <Divider />
+            {beforeGame}
+            {beforeGame && <Divider />}
             <Game
                 unityProvider={unityProvider}
                 isLoaded={isLoaded}
                 requestFullscreen={requestFullscreen}
                 controls={controls}
             />
-            {children && <Divider />}
-            {children}
+            {afterGame && <Divider />}
+            {afterGame}
         </Layout>
     );
 };

@@ -11,6 +11,7 @@ const useStats = () => {
     const { account } = useWallet();
 
     const [loading, setLoading] = useState<boolean>(true);
+    const [hasPlayerMinted, setHasPlayerMinted] = useState<boolean>(false);
     const [wins, setWins] = useState<number>(0);
     const [losses, setLosses] = useState<number>(0);
     const [eloRating, setEloRating] = useState<number>(0);
@@ -23,6 +24,9 @@ const useStats = () => {
                 setEloRating(playerEloRatingData[0]);
                 setWins(playerEloRatingData[1]);
                 setLosses(playerEloRatingData[2]);
+                setHasPlayerMinted(true);
+            } else {
+                setHasPlayerMinted(false)
             }
             setLoading(false);
         }
@@ -36,6 +40,7 @@ const useStats = () => {
     return {
         walletConnected: account?.address?.toString() !== undefined,
         loading,
+        hasPlayerMinted,
         wins,
         losses,
         eloRating

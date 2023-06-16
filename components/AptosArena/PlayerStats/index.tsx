@@ -1,9 +1,10 @@
 import React from 'react';
-import {Flex, Heading, Text, VStack} from "@chakra-ui/react";
+import {Flex, Text, VStack} from "@chakra-ui/react";
 import ConnectWallet from "@/components/Navbar/ConnectWallet";
 import useStats from "@/hooks/aptosArena/useStats";
 import CircularProgress from "@/components/Utilities/CircularProgress";
 import StatsItem from "@/components/AptosArena/PlayerStats/StatsItem";
+import PlayerCreation from "@/components/AptosArena/PlayerCreation";
 
 const PlayerStats = () => {
 
@@ -12,18 +13,14 @@ const PlayerStats = () => {
         loading,
         wins,
         losses,
-        eloRating
+        eloRating,
+        hasPlayerMinted
     } = useStats();
 
     return (
         <VStack
             spacing={8}
         >
-            <Heading
-                color={'blue.200'}
-            >
-                Your Stats
-            </Heading>
             <VStack
                 spacing={4}
             >
@@ -35,9 +32,10 @@ const PlayerStats = () => {
             </VStack>
             {
                 walletConnected ? (
-                        loading ? (
-                            <CircularProgress isIndeterminate />
-                        ) : (
+                    loading ? (
+                        <CircularProgress isIndeterminate />
+                    ) : (
+                        hasPlayerMinted ? (
                             <Flex
                                 w='100%'
                                 direction={{base: 'column', md: 'row'}}
@@ -54,7 +52,10 @@ const PlayerStats = () => {
                                 />
 
                             </Flex>
+                        ) : (
+                            <PlayerCreation />
                         )
+                    )
                 ) : (
                     <ConnectWallet />
                 )

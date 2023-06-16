@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Flex, Heading, Text, VStack} from "@chakra-ui/react";
+import {Flex, Text, VStack} from "@chakra-ui/react";
 
 import PlayerCreation from "@/components/AptosArena/PlayerCreation";
 import Characters from "@/components/AptosArena/CharacterSelect/Characters";
@@ -16,7 +16,6 @@ import RangedWeapons from "@/components/AptosArena/RangedWeaponSelect/RangedWeap
 const BrawlerDisplay = () => {
 
     const {
-        createPlayer,
         playerTokenAddress,
         playerMeleeWeapon,
         playerRangedWeapon,
@@ -29,11 +28,6 @@ const BrawlerDisplay = () => {
         <VStack
             spacing={8}
         >
-            <Heading
-                color={'blue.200'}
-            >
-                Your Brawler
-            </Heading>
             <VStack
                 spacing={4}
             >
@@ -84,7 +78,7 @@ const BrawlerDisplay = () => {
                                 />
                             </Flex>
                         ) : (
-                            <PlayerCreation createPlayer={createPlayer} />
+                            <PlayerCreation />
                         )
                     )
                 ) : (

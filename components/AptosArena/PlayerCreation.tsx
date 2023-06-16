@@ -1,12 +1,11 @@
 import React from 'react';
 
 import Button from "@/components/Utilities/Button";
+import useCreateBrawler from "@/hooks/aptosArena/useCreateBrawler";
 
+const PlayerCreation: React.FC = () => {
 
-interface Props {
-    createPlayer: () => Promise<void>
-}
-const PlayerCreation: React.FC<Props> = ({ createPlayer }) => {
+    const { createPlayer } = useCreateBrawler()
 
     return (
         <Button

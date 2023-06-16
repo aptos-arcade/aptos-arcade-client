@@ -2,9 +2,6 @@ import {useState, useEffect, useCallback} from "react";
 
 import {useWallet} from "@manahippo/aptos-wallet-adapter";
 
-import useAptosTransaction from "@/hooks/useAptosTransaction";
-
-import { mintPlayerPayload,} from "@/services/transactionBuilder";
 import {
     getPlayerCharacterData,
     getPlayerMeleeWeaponData,
@@ -26,8 +23,6 @@ const usePlayer = () => {
     let { provider } = useAptos();
 
     let { account } = useWallet();
-
-    let { submitTransaction } = useAptosTransaction();
 
     const [loading, setLoading] = useState(true);
     const [playerTokenAddress, setPlayerTokenAddress] = useState("");
@@ -101,15 +96,10 @@ const usePlayer = () => {
         fetchPlayerRangedWeapon();
     }, [fetchPlayerRangedWeapon]);
 
-    const createPlayer = async () => {
-        await submitTransaction(mintPlayerPayload, {
-            title: "Brawler Created",
-        });
-    }
+
 
     return {
         walletConnected: Boolean(account?.address?.toString()),
-        createPlayer,
         loading,
         playerTokenAddress,
         playerCharacter,

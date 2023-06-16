@@ -11,8 +11,7 @@ interface Props {
 
 const LeaderboardRow: React.FC<Props> = ({ leaderboardRow, rank }) => {
 
-    const { name, wins, losses } = leaderboardRow;
-    const winPercentage = (wins / (wins + losses)) * 100;
+    const { name, wins, losses, elo } = leaderboardRow;
 
     return (
         <Tr>
@@ -20,7 +19,7 @@ const LeaderboardRow: React.FC<Props> = ({ leaderboardRow, rank }) => {
             <Td>{name}</Td>
             <Td>{wins}</Td>
             <Td>{losses}</Td>
-            <Td>{winPercentage.toFixed(2)}</Td>
+            <Td>{elo}</Td>
         </Tr>
     );
 };

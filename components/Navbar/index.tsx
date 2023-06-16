@@ -1,15 +1,9 @@
 import React from 'react';
 
-import {
-    Box,
-    Flex,
-    HStack, Image,
-} from '@chakra-ui/react'
+import {Flex, HStack, Image} from '@chakra-ui/react'
 
 import ConnectWallet from './ConnectWallet';
 import Link from "next/link";
-import NavLinks from "@/components/Navbar/NavLinks";
-import MobileNav from "@/components/Navbar/MobileNav";
 
 export const navbarHeight = {
     base: 24,
@@ -47,15 +41,15 @@ const Navbar : React.FC = ({ }) => {
                         }}
                     />
                 </Link>
-                <Box
-                    display={{base: 'none', md: 'block'}}
-                >
-                    <NavLinks />
-                </Box>
+                {/*<Box*/}
+                {/*    display={{base: 'none', md: 'block'}}*/}
+                {/*>*/}
+                {/*    <NavLinks />*/}
+                {/*</Box>*/}
             </HStack>
             <HStack>
                 <ConnectWallet />
-                <MobileNav />
+                {/*<MobileNav />*/}
             </HStack>
 
         </Flex>

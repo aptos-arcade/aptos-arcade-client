@@ -119,3 +119,13 @@ export const getPlayerEloRatingData = (client: AptosClient, playerAddress: strin
     ))
         .then((result) => result.map((value) => parseInt(value as string)))
         .catch(() => [])
+
+export const getEloRatingCollectionAddress = (client: AptosClient): Promise<string> =>
+    client.view(viewFunction(
+        aptosArenaModule,
+        "get_elo_collection_address",
+        [],
+        []
+    ))
+        .then((result) => canonicalAddress(result[0] as string))
+        .catch(() => "")

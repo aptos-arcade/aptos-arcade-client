@@ -10,7 +10,7 @@ interface Props {
 const StatsItem: React.FC<Props> = ({ title, value}) => {
     return (
         <VStack
-            spacing={4}
+            spacing={2}
             borderWidth={2}
             borderRadius={8}
             p={4}
@@ -19,12 +19,15 @@ const StatsItem: React.FC<Props> = ({ title, value}) => {
             w={'100%'}
         >
             <Text
-                fontSize={'xl'}
-                fontWeight={'bold'}
+                fontSize={'lg'}
+                fontWeight={'medium'}
             >
                 {title}
             </Text>
-            <Text>
+            <Text
+                fontSize={'3xl'}
+                fontWeight={'bold'}
+            >
                 {value}
             </Text>
         </VStack>
