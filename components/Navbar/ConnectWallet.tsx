@@ -12,7 +12,6 @@ import {
     useToast,
     Image,
     Flex,
-    Text,
 } from '@chakra-ui/react'
 import { ChevronDownIcon } from '@chakra-ui/icons'
 
@@ -20,7 +19,7 @@ import { FaWallet } from 'react-icons/fa'
 
 import { useWallet, Wallet } from '@manahippo/aptos-wallet-adapter'
 
-import { ellipsize } from '@/services/utils'
+import AddressText from "@/components/Utilities/AddressText";
 
 const ConnectWallet: React.FC = () => {
 
@@ -69,7 +68,9 @@ const ConnectWallet: React.FC = () => {
                 leftIcon={!mobileView ? <FaWallet /> : undefined}
                 icon={mobileView ? <FaWallet /> : undefined}
             >
-                {(connected ? ellipsize(account?.address?.toString().slice(2), 4, 4) : 'Connect Wallet')}
+                {account?.address?.toString()
+                    ? <AddressText address={account?.address?.toString()} />
+                    : 'Connect Wallet'}
             </MenuButton>
             <MenuList
                 bg='#1A202C'
