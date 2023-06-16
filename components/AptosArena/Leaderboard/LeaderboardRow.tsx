@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Td, Tr} from "@chakra-ui/react";
 
-import {ellipsize} from "@/services/utils";
+import AddressText from "@/components/Utilities/AddressText";
 
 import {LeaderboardRow as LeaderboardRowType} from "@/types/LeaderboardRow";
 
@@ -11,17 +11,41 @@ interface Props {
     rank: number;
 }
 
+interface DataProps {
+    children: React.ReactNode
+}
+
+const DataEntry: React.FC<DataProps> = ({ children }) => (
+    <Td
+        textAlign={'center'}
+    >
+        {children}
+    </Td>
+);
+
 const LeaderboardRow: React.FC<Props> = ({ leaderboardRow, rank }) => {
 
     const { name, wins, losses, elo } = leaderboardRow;
 
     return (
         <Tr>
-            <Td>{rank}</Td>
-            <Td>{ellipsize(name,4, 4)}</Td>
-            <Td>{wins}</Td>
-            <Td>{losses}</Td>
-            <Td>{elo}</Td>
+            <DataEntry>
+                {rank}
+            </DataEntry>
+            <DataEntry>
+                <AddressText
+                    address={name}
+                />
+            </DataEntry>
+            <DataEntry>
+                {wins}
+            </DataEntry>
+            <DataEntry>
+                {losses}
+            </DataEntry>
+            <DataEntry>
+                {elo}
+            </DataEntry>
         </Tr>
     );
 };
