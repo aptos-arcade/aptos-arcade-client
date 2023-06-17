@@ -37,7 +37,7 @@ const Leaderboard = () => {
                 {
                     leaderboardRows.map((leaderboardRow, index) => (
                         <LeaderboardRow
-                            key={index}
+                            key={leaderboardRow.name}
                             leaderboardRow={leaderboardRow}
                             rank={index + 1}
                         />

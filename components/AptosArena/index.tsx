@@ -6,6 +6,7 @@ import BrawlerDisplay from "@/components/AptosArena/BrawlerDisplay";
 import PlayerStats from "@/components/AptosArena/PlayerStats";
 import {Heading, VStack} from "@chakra-ui/react";
 import Leaderboard from "@/components/AptosArena/Leaderboard";
+import Achievements from "@/components/AptosArena/Achievements";
 
 
 const AptosArena = () => {
@@ -30,6 +31,7 @@ const AptosArena = () => {
                     <Tab>Brawler</Tab>
                     <Tab>Stats</Tab>
                     <Tab>Leaderboard</Tab>
+                    <Tab>Achievements</Tab>
                 </TabList>
                 <TabPanels
                     py={8}
@@ -42,6 +44,9 @@ const AptosArena = () => {
                     </TabPanel>
                     <TabPanel>
                         <Leaderboard />
+                    </TabPanel>
+                    <TabPanel>
+                        <Achievements />
                     </TabPanel>
                 </TabPanels>
             </Tabs>
