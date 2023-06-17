@@ -27,7 +27,7 @@ const Achievements = () => {
                 <Text
                     textAlign={'center'}
                 >
-                    Achievements are earned by playing ranked mode. Each achievement has 3 tiers, and each tier has a unique NFT reward
+                    Achievements are earned by playing ranked mode. Each achievement has unique requirements, and issues an in-game reward
                 </Text>
             </VStack>
             {

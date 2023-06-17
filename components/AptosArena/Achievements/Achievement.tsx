@@ -29,15 +29,31 @@ const Achievement: React.FC<Props> = ({ achievement, value}) => {
                 <HStack
                     w={'100%'}
                     justifyContent={'space-between'}
+                    alignItems={'flex-start'}
                 >
-                    <Text>
+                    <Text
+                        fontSize={'2xl'}
+                    >
                         {achievement.name}
                     </Text>
-                    <Text>
+                    <VStack
+                        alignItems={'flex-end'}
+                    >
+                        <Text>
+                            {
+                                nextTier ? `Next Tier: ${nextTier.name}` : `Complete`
+                            }
+                        </Text>
                         {
-                            nextTier ? `Next Tier: ${nextTier.name}` : `Complete`
+                            nextTier && (
+                                <Text
+                                    color='blue.200'
+                                >
+                                    Reward: {nextTier.reward}
+                                </Text>
+                            )
                         }
-                    </Text>
+                    </VStack>
                 </HStack>
                 <HStack
                     w={'100%'}
