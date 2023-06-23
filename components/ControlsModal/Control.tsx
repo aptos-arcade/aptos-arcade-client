@@ -45,7 +45,7 @@ const Control: React.FC<Props> = ({ control, divider }) => {
                                     controlsSet.map((key) => (
                                         <Key
                                             keyData={key}
-                                            key={key.key}
+                                            key={key.name}
                                         />
                                     ))
                                 }
