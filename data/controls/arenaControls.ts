@@ -2,26 +2,12 @@ import {Controls} from "@/types/Controls";
 
 const arenaControls: Controls[] = [
     {
-        title: 'Movement',
+        title: 'Shield',
         keys: [
             [
                 {
-                    name: 'Jump',
-                    key: '↑'
-                }
-            ],
-            [
-                {
-                    name: 'Left',
-                    key: '←'
-                },
-                {
-                    name: 'Drop',
-                    key: '↓'
-                },
-                {
-                    name: 'Right',
-                    key: '→'
+                    name: 'Shield',
+                    key: 'L. Shift'
                 }
             ]
         ]
@@ -63,12 +49,26 @@ const arenaControls: Controls[] = [
         ]
     },
     {
-        title: 'Shield',
+        title: 'Movement',
         keys: [
             [
                 {
-                    name: 'Shield',
-                    key: 'L. Shift'
+                    name: 'Jump',
+                    key: '↑'
+                }
+            ],
+            [
+                {
+                    name: 'Left',
+                    key: '←'
+                },
+                {
+                    name: 'Drop',
+                    key: '↓'
+                },
+                {
+                    name: 'Right',
+                    key: '→'
                 }
             ]
         ]

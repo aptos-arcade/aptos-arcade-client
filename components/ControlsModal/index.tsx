@@ -24,7 +24,8 @@ const Controls: React.FC<Props> = ({ isOpen, onClose, controls }) => {
       <Modal
           isOpen={isOpen}
           onClose={onClose}
-          size='2xl'
+          size='4xl'
+
           isCentered
       >
           <ModalOverlay />
@@ -53,6 +54,7 @@ const Controls: React.FC<Props> = ({ isOpen, onClose, controls }) => {
                               <Control
                                   key={index}
                                   control={control}
+                                    divider={index !== controls.length - 1}
                               />
                           ))
                       }
