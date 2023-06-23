@@ -1,3 +1,5 @@
+import {ReactNode} from "react";
+
 export interface Controls {
     title: string
     keys: Key[][]
@@ -5,5 +7,5 @@ export interface Controls {
 
 export interface Key {
     name: string
-    key: string
+    key: ReactNode
 }

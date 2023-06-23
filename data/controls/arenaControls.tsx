@@ -1,13 +1,32 @@
+import { ArrowForwardIcon, ArrowDownIcon, ArrowBackIcon, ArrowUpIcon, SmallAddIcon } from '@chakra-ui/icons'
+
 import {Controls} from "@/types/Controls";
+import {HStack, Text} from "@chakra-ui/react";
 
 const arenaControls: Controls[] = [
     {
-        title: 'Shield',
+        title: 'Defense',
         keys: [
             [
                 {
                     name: 'Shield',
                     key: 'L. Shift'
+                }
+            ],
+            [
+                {
+                    name: 'Dodge',
+                    key: <HStack>
+                        <Text>
+                            L. Shift
+                        </Text>
+                        <SmallAddIcon />
+                        <ArrowBackIcon />
+                        <Text>
+                            or
+                        </Text>
+                        <ArrowForwardIcon />
+                    </HStack>
                 }
             ]
         ]
@@ -54,21 +73,21 @@ const arenaControls: Controls[] = [
             [
                 {
                     name: 'Jump',
-                    key: '↑'
+                    key: <ArrowUpIcon />
                 }
             ],
             [
                 {
                     name: 'Left',
-                    key: '←'
+                    key: <ArrowBackIcon />
                 },
                 {
                     name: 'Drop',
-                    key: '↓'
+                    key: <ArrowDownIcon />
                 },
                 {
                     name: 'Right',
-                    key: '→'
+                    key: <ArrowForwardIcon />
                 }
             ]
         ]
