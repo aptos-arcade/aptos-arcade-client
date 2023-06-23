@@ -1,6 +1,6 @@
 import {useCallback, useEffect, useState} from "react";
 
-import {useWallet} from "@manahippo/aptos-wallet-adapter";
+import {useWallet} from "@aptos-labs/wallet-adapter-react";
 
 import useAptosTransaction from "@/hooks/useAptosTransaction";
 

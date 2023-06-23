@@ -1,7 +1,7 @@
 import {NextApiRequest, NextApiResponse} from "next";
 
-import {HexString, AptosAccount} from "aptos";
-import { TransactionPayload_EntryFunctionPayload, UserTransaction } from "aptos/src/generated";
+import {AptosAccount, HexString, Network} from "aptos";
+import {TransactionPayload_EntryFunctionPayload, UserTransaction} from "aptos/src/generated";
 
 import {createMatch} from "@/services/transactionBuilder";
 import {getAptosProvider} from "@/services/aptosClients";
@@ -34,7 +34,7 @@ export default async function handler(
             res.status(400).json({message: 'Teams must have at least one player'})
             return;
         }
-        let { aptosClient } = getAptosProvider();
+        let { aptosClient } = getAptosProvider(Network.MAINNET);
         const PK_BYTES = new HexString(process.env.APTOS_ARENA_PK as string).toUint8Array()
         const account = new AptosAccount(PK_BYTES);
         let createMatchTransactionPayload = createMatch(body.teams as string[][]) as TransactionPayload_EntryFunctionPayload;

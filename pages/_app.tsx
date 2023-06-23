@@ -6,14 +6,11 @@ import "@fontsource/press-start-2p";
 
 import theme from "@/theme";
 
-import {
-    WalletProvider,
-    AptosWalletAdapter,
-    MartianWalletAdapter,
-    PontemWalletAdapter,
-    RiseWalletAdapter,
-    WalletAdapter
-} from "@manahippo/aptos-wallet-adapter";
+import { AptosWalletAdapterProvider, Wallet } from "@aptos-labs/wallet-adapter-react";
+import { PontemWallet } from "@pontem/wallet-adapter-plugin";
+import { RiseWallet } from "@rise-wallet/wallet-adapter";
+import { PetraWallet } from "petra-plugin-wallet-adapter";
+import { MartianWallet } from "@martianwallet/aptos-wallet-adapter";
 
 import type { AppProps } from 'next/app'
 import Head from "next/head";
@@ -21,15 +18,15 @@ import {AptosProvider} from "@/contexts/AptosContext";
 
 export default function App({ Component, pageProps }: AppProps) {
 
-    const [wallets, setWallets] = useState<WalletAdapter[]>([]);
+    const [wallets, setWallets] = useState<Wallet[]>([]);
     const [loaded, setLoaded] = useState<boolean>(false);
 
     useEffect(() => {
         setWallets([
-            new PontemWalletAdapter(),
-            new RiseWalletAdapter(),
-            new AptosWalletAdapter(),
-            new MartianWalletAdapter(),
+            new PontemWallet(),
+            new RiseWallet(),
+            new PetraWallet(),
+            new MartianWallet(),
         ])
         setLoaded(true);
     }, [])
@@ -39,8 +36,8 @@ export default function App({ Component, pageProps }: AppProps) {
     }
 
   return (
-      <WalletProvider
-          wallets={wallets}
+      <AptosWalletAdapterProvider
+          plugins={wallets}
           autoConnect={true}
       >
           <AptosProvider>
@@ -54,6 +51,6 @@ export default function App({ Component, pageProps }: AppProps) {
                   <Component {...pageProps} />
               </ChakraProvider>
           </AptosProvider>
-    </WalletProvider>
+    </AptosWalletAdapterProvider>
   )
 }

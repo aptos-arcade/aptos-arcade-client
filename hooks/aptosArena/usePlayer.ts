@@ -1,6 +1,6 @@
 import {useState, useEffect, useCallback} from "react";
 
-import {useWallet} from "@manahippo/aptos-wallet-adapter";
+import {useWallet} from "@aptos-labs/wallet-adapter-react";
 
 import {
     getPlayerCharacterData,

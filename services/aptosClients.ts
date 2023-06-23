@@ -1,17 +1,5 @@
-import {AptosClient, Network, Provider} from "aptos";
+import {Network, Provider} from "aptos";
 
-import {SupportedNetwork} from "@/types/SupportedNetwork";
+export const getAptosClient = (network: Network) => new Provider(network).aptosClient;
 
-type RpcUrls = {
-    [key in SupportedNetwork]: string;
-};
-
-const rpcUrls: RpcUrls = {
-    // "devnet": 'https://fullnode.devnet.aptoslabs.com/v1',
-    // "testnet": 'https://fullnode.testnet.aptoslabs.com/v1',
-    "mainnet": 'https://fullnode.mainnet.aptoslabs.com/v1',
-} as const
-
-export const getAptosClient = (network: SupportedNetwork) => new AptosClient(rpcUrls[network]);
-
-export const getAptosProvider = () => new Provider(Network.MAINNET);
+export const getAptosProvider = (network: Network) => new Provider(network);

@@ -1,8 +1,8 @@
-import { TransactionPayload } from "aptos/src/generated";
+import { TransactionPayload_EntryFunctionPayload } from "aptos/src/generated";
 import {moduleToString} from "@/services/aptosUtils";
 import {scriptsModule} from "@/data/modules";
 
-export const scriptTransactionPayload = (functionName: string, args: any[], typeArgs: string[]): TransactionPayload => ({
+export const scriptTransactionPayload = (functionName: string, args: any[], typeArgs: string[]): TransactionPayload_EntryFunctionPayload => ({
     type: "entry_function_payload",
     function: `${moduleToString(scriptsModule)}::${functionName}`,
     arguments: args,
@@ -13,7 +13,7 @@ export const mintPlayerPayload = scriptTransactionPayload("init_player", [], [])
 
 export const mintMeleeWeaponPayload = scriptTransactionPayload("mint_melee_weapon", [], []);
 
-export const equipMeleeWeaponPayload = (meleeWeaponAddress: string): TransactionPayload => scriptTransactionPayload(
+export const equipMeleeWeaponPayload = (meleeWeaponAddress: string) => scriptTransactionPayload(
     "equip_melee_weapon",
     [meleeWeaponAddress],
     []
@@ -33,7 +33,7 @@ export const equipCharacterPayload = (creatorAddress: string, collectionName: st
 
 export const mintRangedWeaponPayload = scriptTransactionPayload("mint_ranged_weapon", [], []);
 
-export const equipRangedWeaponPayload = (rangedWeaponAddress: string): TransactionPayload => scriptTransactionPayload(
+export const equipRangedWeaponPayload = (rangedWeaponAddress: string) => scriptTransactionPayload(
     "equip_ranged_weapon",
     [rangedWeaponAddress],
     []

@@ -17,13 +17,11 @@ import { ChevronDownIcon } from '@chakra-ui/icons'
 
 import { FaWallet } from 'react-icons/fa'
 
-import { useWallet, Wallet } from '@manahippo/aptos-wallet-adapter'
-
-import AddressText from "@/components/Utilities/AddressText";
+import { useWallet, Wallet } from '@aptos-labs/wallet-adapter-react'
 
 const ConnectWallet: React.FC = () => {
 
-    const { connected, account, disconnect, wallets, select } = useWallet();
+    const { connected, account, disconnect, wallets, connect } = useWallet();
 
     const { onCopy, setValue } = useClipboard("")
 
@@ -37,7 +35,7 @@ const ConnectWallet: React.FC = () => {
 
 
     const onConnect = async (wallet : Wallet) => {
-        select(wallet.adapter.name);
+        connect(wallet.name);
     }
 
     const copy = () => {
@@ -68,9 +66,11 @@ const ConnectWallet: React.FC = () => {
                 leftIcon={!mobileView ? <FaWallet /> : undefined}
                 icon={mobileView ? <FaWallet /> : undefined}
             >
-                {account?.address?.toString()
-                    ? <AddressText address={account?.address?.toString()} />
-                    : 'Connect Wallet'}
+                {
+                    account
+                        ? (account.ansName ? `${account.ansName}.apt` : account.address.toString())
+                        : 'Connect Wallet'
+                }
             </MenuButton>
             <MenuList
                 bg='#1A202C'
@@ -102,9 +102,9 @@ const ConnectWallet: React.FC = () => {
                     ) : (
                         wallets.map(wallet => (
                             <MenuItem
-                                key={wallet.adapter.name}
+                                key={wallet.name}
                                 onClick={() => onConnect(wallet)}
-                                icon={<Image src={wallet.adapter.icon} boxSize={6} alt={wallet.adapter.name} />}
+                                icon={<Image src={wallet.icon} boxSize={6} alt={wallet.name} />}
                                 fontWeight="medium"
                                 alignItems='center'
                                 bg='transparent'
@@ -118,7 +118,7 @@ const ConnectWallet: React.FC = () => {
                                     alignItems='center'
                                     gap={4}
                                 >
-                                    {wallet.adapter.name}
+                                    {wallet.name}
                                 </Flex>
                             </MenuItem>
                         ))

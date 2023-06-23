@@ -61,6 +61,17 @@ const arenaControls: Controls[] = [
                 }
             ]
         ]
+    },
+    {
+        title: 'Shield',
+        keys: [
+            [
+                {
+                    name: 'Shield',
+                    key: 'L. Shift'
+                }
+            ]
+        ]
     }
 ]
 

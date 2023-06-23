@@ -1,14 +1,12 @@
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 
-import {useWallet} from "@manahippo/aptos-wallet-adapter";
+import {useWallet} from "@aptos-labs/wallet-adapter-react";
 
 import useGame from "@/hooks/game/useGameData";
 
 import {GameHook} from "@/types/GameHook";
 
 const useAptosArena: GameHook = () => {
-
-    const [walletManagerActive, setWalletManagerActive] = useState<boolean>(false);
 
     const { account } = useWallet();
 
@@ -24,7 +22,7 @@ const useAptosArena: GameHook = () => {
         if(isLoaded) {
             sendMessage("WalletManager", "SetAccountAddress", account?.address?.toString() || "");
         }
-    }, [account?.address, isLoaded, sendMessage, walletManagerActive]);
+    }, [account?.address, isLoaded, sendMessage]);
 
     return {
         unityProvider,

@@ -27,7 +27,10 @@ const Control: React.FC<Props> = ({ control }) => {
                     {control.title}
                 </Text>
             )}
-            <VStack>
+            <VStack
+                h={'100%'}
+                justifyContent={'center'}
+            >
                 {
                     control.keys.map((controlsSet, index) => (
                         <HStack

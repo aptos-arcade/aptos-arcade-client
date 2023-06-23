@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 
-import {useWallet} from "@manahippo/aptos-wallet-adapter";
+import {useWallet} from "@aptos-labs/wallet-adapter-react";
 
 import {Token} from "@/types/Token";
 
@@ -10,16 +10,12 @@ const useOwnedNFTs = (collectionIdHash = "") => {
     const [loading, setLoading] = useState<boolean>(true);
     const [ownedNFTs, setOwnedNFTs] = useState<Token[]>([]);
 
-    const getOwnedNFTs = async (address: string): Promise<Token[]> => {
-        const response = await fetch(`/api/nfts/${address}`)
-        const json = await response.json();
-        return json.tokens
-            .filter((token: Token) => collectionIdHash === "" || token.collectionIdHash === collectionIdHash)
-    }
-
     const fetchOwnedNFTs = useCallback(async (address: string) => {
         setLoading(true);
-        const ownedNFTs = await getOwnedNFTs(address);
+        const response = await fetch(`/api/nfts/${address}`)
+        const json = await response.json();
+        const ownedNFTs = json.tokens
+            .filter((token: Token) => collectionIdHash === "" || token.collectionIdHash === collectionIdHash)
         setOwnedNFTs(ownedNFTs);
         setLoading(false);
     }, [collectionIdHash])
@@ -31,7 +27,6 @@ const useOwnedNFTs = (collectionIdHash = "") => {
     }, [account, fetchOwnedNFTs])
 
     return {
-        getOwnedNFTs,
         ownedNFTs,
         loading
     };

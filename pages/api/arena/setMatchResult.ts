@@ -1,7 +1,7 @@
 import {NextApiRequest, NextApiResponse} from "next";
 
-import {HexString, AptosAccount} from "aptos";
-import { TransactionPayload_EntryFunctionPayload } from "aptos/src/generated";
+import {AptosAccount, HexString, Network} from "aptos";
+import {TransactionPayload_EntryFunctionPayload} from "aptos/src/generated";
 
 import {setMatchResult} from "@/services/transactionBuilder";
 import {getAptosProvider} from "@/services/aptosClients";
@@ -27,7 +27,7 @@ export default async function handler(
             res.status(400).json({message: 'Invalid request body'})
             return;
         }
-        let { aptosClient } = getAptosProvider();
+        let { aptosClient } = getAptosProvider(Network.MAINNET);
         const PK_BYTES = new HexString(process.env.APTOS_ARENA_PK as string).toUint8Array()
         const account = new AptosAccount(PK_BYTES);
         let setMatchResultTransactionPayload = setMatchResult(body.matchAddress, body.winnerIndex) as TransactionPayload_EntryFunctionPayload;

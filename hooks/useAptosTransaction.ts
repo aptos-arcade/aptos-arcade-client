@@ -1,8 +1,8 @@
 import { useToast } from "@chakra-ui/react";
 
-import { useWallet as useWalletAdapter } from "@manahippo/aptos-wallet-adapter";
+import { useWallet as useWalletAdapter } from "@aptos-labs/wallet-adapter-react";
 
-import { TransactionPayload, Transaction_UserTransaction } from "aptos/src/generated";
+import { TransactionPayload_EntryFunctionPayload } from "aptos/src/generated";
 
 import { useAptos } from "@/contexts/AptosContext";
 
@@ -18,7 +18,7 @@ const useAptosTransaction = () => {
 
     const toast = useToast();
 
-    const submitTransaction = async (transaction: TransactionPayload, toastMessage: ToastMessage) => {
+    const submitTransaction = async (transaction: TransactionPayload_EntryFunctionPayload, toastMessage: ToastMessage) => {
         await signAndSubmitTransaction(transaction, {checkSuccess: true})
             .then(async ({hash}) => {
                 await provider.aptosClient.waitForTransactionWithResult(hash)
