@@ -4,7 +4,7 @@ import {Tab, TabList, TabPanel, TabPanels, Tabs} from "@chakra-ui/tabs";
 
 import BrawlerDisplay from "@/components/AptosArena/BrawlerDisplay";
 import PlayerStats from "@/components/AptosArena/PlayerStats";
-import {Heading, VStack} from "@chakra-ui/react";
+import {VStack} from "@chakra-ui/react";
 import Leaderboard from "@/components/AptosArena/Leaderboard";
 import Achievements from "@/components/AptosArena/Achievements";
 
@@ -14,13 +14,6 @@ const AptosArena = () => {
         <VStack
             spacing={8}
         >
-            <Heading
-                size={'xl'}
-                fontWeight={'bold'}
-                color={'brand.200'}
-            >
-                Your Brawler
-            </Heading>
             <Tabs
                 isFitted
                 colorScheme='brand'
@@ -28,7 +21,7 @@ const AptosArena = () => {
                 w={'100%'}
             >
                 <TabList>
-                    <Tab>Brawler</Tab>
+                    <Tab>Your BRAWL3R</Tab>
                     <Tab>Stats</Tab>
                     <Tab>Leaderboard</Tab>
                     <Tab>Achievements</Tab>
