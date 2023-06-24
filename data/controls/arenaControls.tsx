@@ -15,18 +15,27 @@ const arenaControls: Controls[] = [
             ],
             [
                 {
-                    name: 'Dodge',
-                    key: <HStack>
-                        <Text>
-                            L. Shift
-                        </Text>
-                        <SmallAddIcon />
-                        <ArrowBackIcon />
-                        <Text>
-                            or
-                        </Text>
-                        <ArrowForwardIcon />
-                    </HStack>
+                    name: 'Dodge L.',
+                    key: (
+                        <HStack>
+                            <Text>L. Shift</Text>
+                            <SmallAddIcon />
+                            <ArrowBackIcon />
+                        </HStack>
+                    )
+                },
+            ],
+            [
+                {
+                    name: 'Dodge R.',
+                    key: (
+                        <HStack>
+                            <Text>L. Shift</Text>
+                            <SmallAddIcon />
+                            <ArrowForwardIcon />
+                        </HStack>
+                    )
+
                 }
             ]
         ]
@@ -89,7 +98,29 @@ const arenaControls: Controls[] = [
                     name: 'Right',
                     key: <ArrowForwardIcon />
                 }
-            ]
+            ],
+            [
+                {
+                    name: 'Dash L.',
+                    key: (
+                        <HStack>
+                            <ArrowBackIcon />
+                            <SmallAddIcon />
+                            <ArrowBackIcon />
+                        </HStack>
+                    )
+                },
+                {
+                    name: 'Dash R.',
+                    key: (
+                        <HStack>
+                            <ArrowForwardIcon />
+                            <SmallAddIcon />
+                            <ArrowForwardIcon />
+                        </HStack>
+                    )
+                }
+            ],
         ]
     }
 ]

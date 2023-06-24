@@ -35,21 +35,25 @@ const Control: React.FC<Props> = ({ control, divider }) => {
                 <VStack
                     h={'100%'}
                     justifyContent={'center'}
+                    spacing={4}
                 >
                     {
                         control.keys.map((controlsSet, index) => (
-                            <HStack
-                                key={index}
-                            >
-                                {
-                                    controlsSet.map((key) => (
-                                        <Key
-                                            keyData={key}
-                                            key={key.name}
-                                        />
-                                    ))
-                                }
-                            </HStack>
+                            <>
+                                <HStack
+                                    key={index}
+                                >
+                                    {
+                                        controlsSet.map((key) => (
+                                            <Key
+                                                keyData={key}
+                                                key={key.name}
+                                            />
+                                        ))
+                                    }
+                                </HStack>
+                                {index !== control.keys.length - 1 && <Divider />}
+                            </>
                         ))
                     }
                 </VStack>
