@@ -18,6 +18,7 @@ import { ChevronDownIcon } from '@chakra-ui/icons'
 import { FaWallet } from 'react-icons/fa'
 
 import { useWallet, Wallet } from '@aptos-labs/wallet-adapter-react'
+import {ellipsize} from "@/services/utils";
 
 const ConnectWallet: React.FC = () => {
 
@@ -68,7 +69,7 @@ const ConnectWallet: React.FC = () => {
             >
                 {
                     account
-                        ? (account.ansName ? `${account.ansName}.apt` : account.address.toString())
+                        ? (account.ansName ? `${account.ansName}.apt` : ellipsize(account.address.toString()))
                         : 'Connect Wallet'
                 }
             </MenuButton>

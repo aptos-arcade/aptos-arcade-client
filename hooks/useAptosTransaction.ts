@@ -2,7 +2,7 @@ import { useToast } from "@chakra-ui/react";
 
 import { useWallet as useWalletAdapter } from "@aptos-labs/wallet-adapter-react";
 
-import { TransactionPayload_EntryFunctionPayload } from "aptos/src/generated";
+import { TransactionPayload_EntryFunctionPayload, Transaction_UserTransaction } from "aptos/src/generated";
 
 import { useAptos } from "@/contexts/AptosContext";
 
@@ -18,10 +18,13 @@ const useAptosTransaction = () => {
 
     const toast = useToast();
 
-    const submitTransaction = async (transaction: TransactionPayload_EntryFunctionPayload, toastMessage: ToastMessage) => {
-        await signAndSubmitTransaction(transaction, {checkSuccess: true})
+    const submitTransaction = async (
+        transaction: TransactionPayload_EntryFunctionPayload,
+        toastMessage: ToastMessage
+    ): Promise<boolean> => {
+        return signAndSubmitTransaction(transaction, {checkSuccess: true})
             .then(async ({hash}) => {
-                await provider.aptosClient.waitForTransactionWithResult(hash)
+                return provider.aptosClient.waitForTransactionWithResult(hash)
                     // @ts-ignore
                     .then(async (transaction: Transaction_UserTransaction) => {
                         if(transaction.success) {
@@ -32,6 +35,7 @@ const useAptosTransaction = () => {
                                 duration: 5000,
                                 isClosable: true,
                             });
+                            return true;
                         } else {
                             toast({
                                 title: "Transaction failed!",
@@ -40,6 +44,7 @@ const useAptosTransaction = () => {
                                 duration: 5000,
                                 isClosable: true,
                             });
+                            return false;
                         }
                     })
             })
@@ -51,6 +56,7 @@ const useAptosTransaction = () => {
                     duration: 5000,
                     isClosable: true,
                 });
+                return false;
             })
     }
 
