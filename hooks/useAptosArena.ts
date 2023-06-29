@@ -34,7 +34,7 @@ const useAptosArena: GameHook = () => {
         const success = await submitTransaction({
             type: "entry_function_payload",
             function: func,
-            arguments: args.split(","),
+            arguments: args ? args.split(",") : [],
             type_arguments: typeArgs ? typeArgs.split(",") : []
         }, {
             title: "Transaction Submitted!",

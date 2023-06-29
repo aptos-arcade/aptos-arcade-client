@@ -18,7 +18,7 @@ export default function HomePage() {
             headerText={title}
             subHeaderText={description}
             controls={arenaControls}
-            beforeGame={<AptosArena />}
+            afterGame={<AptosArena />}
         />
     )
 }

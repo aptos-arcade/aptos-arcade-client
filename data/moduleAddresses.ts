@@ -1,1 +1,1 @@
-export const aptosArenaModuleAddress = "0x5d74b9dfc5e930db7fd9530675e06a0bb52800cb5bf7c038a6f886aa3c00381d";
+export const aptosArenaModuleAddress = "0xa063aa74aeb7aac297161df445de42d99e2e9ac0d560af9500b2db29f2b8c4d6";
