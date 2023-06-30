@@ -48,6 +48,8 @@ const ConnectWallet: React.FC = () => {
             isClosable: true,
         })
     }
+
+    console.log(wallets.map(wallet => wallet.name))
     
 
     const mobileView = useBreakpointValue({ base: true, sm: false })
