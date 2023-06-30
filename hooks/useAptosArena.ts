@@ -55,9 +55,6 @@ const useAptosArena: GameHook = () => {
         };
     }, [addEventListener, onTransactionRequest, onWalletConnect, removeEventListener]);
 
-
-
-
     return {
         unityProvider,
         isLoaded,
