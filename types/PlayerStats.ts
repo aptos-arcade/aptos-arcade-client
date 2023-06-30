@@ -1,5 +1,4 @@
-export interface LeaderboardRow {
-    name: string;
+export interface PlayerStats {
     wins: number;
     losses: number;
     eloRating: number;

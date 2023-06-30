@@ -50,7 +50,7 @@ const Achievements = () => {
                         />
                         <Achievement
                             achievement={killsAchievement}
-                            value={19}
+                            value={0}
                         />
                     </VStack>
                 ) : (

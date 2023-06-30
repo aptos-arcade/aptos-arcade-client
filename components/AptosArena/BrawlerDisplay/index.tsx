@@ -12,6 +12,9 @@ import ConnectWallet from "@/components/Navbar/ConnectWallet";
 import CircularProgress from "@/components/Utilities/CircularProgress";
 import RangedWeapons from "@/components/AptosArena/RangedWeaponSelect/RangedWeapons";
 
+import {meleeWeaponNames} from "@/data/meleeWeapons";
+import {rangedWeaponNames} from "@/data/rangedWeapons";
+
 
 const BrawlerDisplay = () => {
 
@@ -64,14 +67,14 @@ const BrawlerDisplay = () => {
                                 />
                                 <BrawlerItem
                                     title={"Melee Weapon"}
-                                    value={playerMeleeWeapon?.name || 'No Melee Weapon'}
+                                    value={playerMeleeWeapon ? meleeWeaponNames[playerMeleeWeapon.type - 1] : 'No Melee Weapon'}
                                     button={
                                         <MeleeWeapons/>
                                     }
                                 />
                                 <BrawlerItem
                                     title={"Ranged Weapon"}
-                                    value={playerRangedWeapon?.name || 'No Ranged Weapon'}
+                                    value={playerRangedWeapon ? rangedWeaponNames[playerRangedWeapon.type - 1] : 'No Ranged Weapon'}
                                     button={
                                         <RangedWeapons />
                                     }

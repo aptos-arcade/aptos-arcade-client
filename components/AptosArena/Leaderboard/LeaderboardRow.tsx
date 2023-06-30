@@ -25,7 +25,7 @@ const DataEntry: React.FC<DataProps> = ({ children }) => (
 
 const LeaderboardRow: React.FC<Props> = ({ leaderboardRow, rank }) => {
 
-    const { name, wins, losses, elo } = leaderboardRow;
+    const { name, wins, losses, eloRating } = leaderboardRow;
 
     return (
         <Tr>
@@ -44,7 +44,7 @@ const LeaderboardRow: React.FC<Props> = ({ leaderboardRow, rank }) => {
                 {losses}
             </DataEntry>
             <DataEntry>
-                {elo}
+                {eloRating}
             </DataEntry>
         </Tr>
     );

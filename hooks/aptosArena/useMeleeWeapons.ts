@@ -10,7 +10,7 @@ import {
     getHasPlayerMintedMeleeWeapon,
     getMeleeWeaponCollectionAddress,
     getMeleeWeaponData
-} from "@/services/viewFunctionBuilder";
+} from "@/services/viewFunctions";
 import {equipMeleeWeaponPayload, mintAndEquipMeleeWeapon} from "@/services/transactionBuilder";
 
 import {meleeWeaponNames} from "@/data/meleeWeapons";

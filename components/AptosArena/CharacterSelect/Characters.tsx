@@ -7,10 +7,12 @@ import Modal from "@/components/Utilities/Modal";
 import Button from "@/components/Utilities/Button";
 
 import useCharacters from "@/hooks/aptosArena/useCharacters";
+
 import {TokenData} from "@/types/TokenData";
+import {CharacterData} from "@/types/PlayerData";
 
 interface Props {
-    selectedCharacter?: TokenData
+    selectedCharacter?: CharacterData
 }
 
 const Characters: React.FC<Props> = ({ selectedCharacter }) => {

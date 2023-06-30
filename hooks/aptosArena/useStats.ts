@@ -1,7 +1,9 @@
 import { useState, useEffect, useCallback } from 'react'
 
 import {useWallet} from "@aptos-labs/wallet-adapter-react";
-import {getPlayerEloRatingData} from "@/services/viewFunctionBuilder";
+
+import { getPlayerStats } from "@/services/viewFunctions";
+
 import {useAptos} from "@/contexts/AptosContext";
 
 const useStats = () => {
@@ -19,15 +21,12 @@ const useStats = () => {
     const fetchPlayerStats = useCallback(async () => {
         if(account?.address?.toString() !== undefined) {
             setLoading(true);
-            let playerEloRatingData = await getPlayerEloRatingData(provider.aptosClient, account?.address?.toString());
-            if(playerEloRatingData.length > 0) {
-                setEloRating(playerEloRatingData[0]);
-                setWins(playerEloRatingData[1]);
-                setLosses(playerEloRatingData[2]);
-                setHasPlayerMinted(true);
-            } else {
-                setHasPlayerMinted(false)
-            }
+            let playerEloRatingData = await getPlayerStats(provider.aptosClient, account?.address?.toString());
+            console.log(playerEloRatingData);
+            setEloRating(playerEloRatingData.eloRating);
+            setWins(playerEloRatingData.wins);
+            setLosses(playerEloRatingData.losses);
+            setHasPlayerMinted(playerEloRatingData.eloRating > 0);
             setLoading(false);
         }
     }, [account?.address, provider.aptosClient],);

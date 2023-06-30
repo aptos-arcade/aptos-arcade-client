@@ -10,7 +10,7 @@ import {
     getHasPlayerMintedRangedWeapon,
     getRangedWeaponCollectionAddress,
     getRangedWeaponData
-} from "@/services/viewFunctionBuilder";
+} from "@/services/viewFunctions";
 import {
     equipRangedWeaponPayload, mintAndEquipRangedWeapon,
 } from "@/services/transactionBuilder";
