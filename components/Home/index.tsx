@@ -1,9 +1,12 @@
 import React from 'react';
+
+import {SimpleGrid, VStack, Box, Image} from "@chakra-ui/react";
+
 import Layout from "@/components/Layout";
 import Header from "@/components/Header";
-import {Box, Image, SimpleGrid, VStack} from "@chakra-ui/react";
-import games from "@/data/games";
 import GameCard from "@/components/Home/GameCard";
+
+import games from "@/data/games";
 
 const Home = () => {
     return (

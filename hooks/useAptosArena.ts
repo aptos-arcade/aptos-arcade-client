@@ -1,6 +1,6 @@
 import {useEffect, useCallback} from "react";
 
-import {useWallet, WalletName} from "@aptos-labs/wallet-adapter-react";
+import {useWallet} from "@aptos-labs/wallet-adapter-react";
 
 import useGame from "@/hooks/game/useGameData";
 
@@ -10,7 +10,7 @@ import {GameHook} from "@/types/GameHook";
 
 const useAptosArena: GameHook = () => {
 
-    const { account, connect } = useWallet();
+    const { account } = useWallet();
 
     const { submitTransaction } = useAptosTransaction();
 
@@ -42,18 +42,18 @@ const useAptosArena: GameHook = () => {
         sendMessage("TransactionHandler", "SendTransactionResult", success ? 1 : 0);
     }, [sendMessage, submitTransaction])
 
-    const onWalletConnect = useCallback(async (walletName: string) => {
-        await connect(walletName as WalletName);
-    }, [connect])
+    const onSetConnectModalOpen = useCallback(async (isOpen: number) => {
+        console.log("onSetConnectModalOpen", isOpen);
+    }, [])
 
     useEffect(() => {
         addEventListener("OnTransactionRequest", onTransactionRequest);
-        addEventListener("ConnectWalletRequest", onWalletConnect);
+        addEventListener("SetConnectModalOpen", onSetConnectModalOpen);
         return () => {
             removeEventListener("OnTransactionRequest", onTransactionRequest);
-            removeEventListener("ConnectWalletRequest", onWalletConnect);
+            removeEventListener("SetConnectModalOpen", onSetConnectModalOpen);
         };
-    }, [addEventListener, onTransactionRequest, onWalletConnect, removeEventListener]);
+    }, [addEventListener, onTransactionRequest, onSetConnectModalOpen, removeEventListener]);
 
     return {
         unityProvider,
